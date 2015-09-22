@@ -1,0 +1,782 @@
+@import (reference) "style";
+
+// Helpers
+
+.side-header-case-fix() {
+	text-transform: lowercase;
+	
+	&:first-letter {
+		text-transform: uppercase;
+	}
+}
+
+.side-sandwich-border() {
+	border-top: 1px solid @side-border-color;
+	border-bottom: 1px solid @side-border-color;
+}
+
+.side-fancy-button-bg() {
+	background: @submit-bg !important;
+	
+	border: 1px solid rgb(0, 0, 0) !important;
+	border-radius: 0 !important;
+	outline: 1px solid @submit-bg;
+	
+	transition: outline @transition-time ease;
+}
+
+.side-fancy-button-hover-bg() {
+	outline: 1px solid @submit-hover-color !important;
+}
+
+.side-fancy-button-text() {
+	text-align: center;
+	font-weight: normal;
+	font-size: 18px;
+	letter-spacing: 1px;
+	color: @submit-color !important;
+}
+
+.side-dark-textfield() {
+	background-color: @side-bg;
+	border: 1px solid @color-gray !important;
+	
+	color: @tabs-color;
+	
+	transition: border-color @transition-time ease;
+	
+	&:focus {
+		border-color: @color-blue !important;
+	}
+}
+
+// Subreddit info
+.linkinfo {
+	.totalvotes {
+		margin-left: 8px;
+		
+		span {
+			font-size: 13px;
+		}
+	}
+	
+	.upvotes {
+		color: rgb(205, 69, 0) !important;
+		
+		span:extend(.linkinfo .totalvotes span) {}
+	}
+	
+	.downvotes {
+		color: rgb(95, 153, 207) !important;
+		
+		span:extend(.linkinfo .totalvotes span) {}
+	}
+}
+
+.titlebox {
+	margin-top: 190px;
+	padding: 0 @side-padding @side-padding;
+	
+	color: @color-white;
+		
+	.redditname {
+		display: none;
+	}
+	
+	// Subscriber and current users
+	.subscribers {
+		&:after {
+			content: @side-user-text;
+		}
+		
+		.word {
+			display: none;
+		}
+	}
+
+	.users-online {
+		&:after {
+			content: "@{side-online-text}";
+		}
+		
+		.word {
+			display: none;
+		}
+	}
+	
+	// Subscribe buttons (RES wraps in .subButtons)
+	.subscribe-button {
+		display: block;
+		text-align: center;
+	}
+	
+	.subscribe-button a {
+		width: 130px;
+	}
+	
+	.subscribe-button a.active,					// Normal subscribe button
+	.subButtons span:not(.subscribe-button) {	// RES subscribe buttons (+shortcut, +dashboard)
+		display: inline-block;
+		width: auto;
+		line-height: 16px;
+		
+		.side-fancy-button-bg();
+		.side-fancy-button-text();
+		
+		padding: 0 8px;
+		
+		font-size: 12px;
+		
+		&:hover {
+			.side-fancy-button-hover-bg();
+		}
+	}
+	
+	> .subscribe-button a.active {
+		width: 130px;
+	}
+	
+	// Configure RES's wrapper around sub buttons
+	.subButtons {
+		display: table;
+		width: 290px;
+		height: 24px;
+		
+		padding-left: 4px;
+		
+		.subscribe-button {
+			display: inline-block;
+		}
+	}
+	
+	// Button options
+	.leavemoderator,
+	form.leavecontributor-button {
+		height: 10px;
+		margin-right: -13px;
+		
+		background: none;
+		
+		font-size: 11px;
+	}
+	
+	form.sr_style_toggle,
+	form.flairtoggle {
+		vertical-align: middle;
+		padding-top: 2px;
+		
+		background: none;
+		
+		label:extend(.titlebox .leavemoderator), input {
+			margin-top: 0;
+			vertical-align: middle;
+		}
+	}
+	
+	form.sr_style_toggle {
+		height: 16px;
+		margin-top: 8px;
+	}
+	
+	form.flairtoggle {
+		height: 18px;
+		font-size: 10px;
+	}
+	
+	.tagline {
+		height: 12px;
+		margin: 0 0 0 20px;
+		font-size: 11px;
+	}
+	
+	.flairselectbtn:after {
+		content: "flair";
+		margin-left: 3px;
+	}
+}
+
+// Main stuff
+
+.side {
+	margin: 0 @content-padding 0 0;
+	
+	background-color: @side-bg !important;
+	border-right: 1px solid @color-dark-gray;
+	border-bottom: 1px solid @color-dark-gray;
+	
+	.md-container {
+		margin: @side-md-top-margin -@side-padding 0 -@side-padding;
+	}
+	
+	.md-section {
+		margin-left: @side-padding;
+		margin-right: @side-padding;
+	}
+	
+	// Mod-editable markdown area
+	.md {
+		overflow: visible;
+		
+		// Default markdown element styling
+		ul, ol {
+			padding-left: 0;
+		}
+		
+		li {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		
+		blockquote {
+			margin: 0;
+			padding: 0;
+			
+			border-left: none;
+		}
+		
+		> p {
+			text-align: center;
+			font-size: 10px;
+		}
+		
+		// Section headers
+		> h1, > h2, > h3, > h4 {
+			color: @side-header-color;
+			font-size: @side-header-size;
+			font-weight: normal;
+			text-align: center;
+		}
+		
+		// Marks auto-generated area
+		> h5, > h6 {
+			display: none;
+		}
+		
+		// Announcements
+		h1 + ol {
+			&:extend(.side .md-section);
+			
+			list-style: none;
+			
+			li {
+				margin-bottom: 4px;
+				padding: 2px 4px 3px;
+				
+				background-color: @announce-bg;
+				border: 1px solid @announce-border-color;
+				
+				transition: background-color @transition-time linear;
+				
+				&:hover {
+					background-color: @announce-bg-hover;
+					
+					a {
+						color: @announce-color-hover;
+					}
+				}
+				
+				a {
+					transition: color @transition-time linear;
+				}
+			}
+		}
+		
+		// Theme select
+		h3 + blockquote {
+			&:extend(.side .md-section);
+			
+			// Buttons
+			p {
+				text-align: center;
+				
+				a {
+					display: inline-block;
+					width: 80px;
+					height: 80px;
+					
+					margin: 0 20px;
+					
+					//border: 1px solid black;
+					//outline: 1px solid @side-border;
+					
+					background-image: url(%%theme-buttons%%);
+					
+					text-shadow: none;
+					
+					//transition: border-color @transition-time ease, box-shadow @transition-time ease;
+					
+					&:hover {
+						//border-color: rgb(200, 200, 200);
+						//box-shadow: 0 0 4px 1px rgba(200, 200, 200, 0.4);
+					}
+					
+					// Light theme button
+					&:first-child {
+						margin-right: -3px;
+						
+						background-position: 0 0;
+					}
+					
+					// Dark theme button
+					&:last-child {
+						background-position: -80px 0;
+					}
+				}
+			}
+			
+			// Nightmode message
+			+ p a {
+				color: rgb(60, 60, 60) !important;
+			}
+		}
+		
+		// Events
+		h4 + table {
+			width: @side-width;
+			
+			background-color: @events-bg;
+			.side-sandwich-border();
+			
+			color: @events-color;
+			
+			thead {
+				display: none;
+			}
+			
+			tbody tr {
+				background-color: @events-bg;
+				
+				font-size: 11px;
+				
+				transition: background-color @transition-time linear;
+				
+				&:nth-child(2n+1) {
+					background-color: @events-bg-alt;
+				}
+				
+				&:hover {
+					background-color: @events-bg-hover;
+				}
+				
+				a {
+					margin-left: 4px;
+					color: @events-link-color;
+				}
+			}
+			
+			td {
+				border: none;
+			}
+		}
+		
+		// Main menu
+		h5 + blockquote {
+			display: none;
+		}
+	}
+	
+	// Bottom boxes (like mod tools and recently visited posts)
+	.sidecontentbox {
+		.title {
+			line-height: 40px;
+			
+			border-bottom: none;
+			
+			text-align: center;
+			
+			h1 {
+				display: inline-block;
+				.side-header-case-fix();
+				
+				font-weight: normal;
+				letter-spacing: 1px;
+				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+			}
+		}
+		
+		.collapse-button {
+			margin: 14px 6px;
+		}
+	}
+	
+	// Promo image
+	a[href$="#promo"] {
+		@promo-height: image-height(@promo-img);
+		
+		width: 300px;
+		height: @promo-height;
+		
+		position: absolute;
+		top: -@promo-height - 81px;
+		left: 0;
+		
+		background-image: url(%%promo%%);
+		.side-sandwich-border();
+		
+		opacity: 0.9;
+		transition: opacity @transition-time linear;
+		
+		&:hover {
+			opacity: 1;
+		}
+		
+		@promo-offset-base: @promo-height + @side-md-top-margin;
+		
+		// Position adjustments based on login and RES states
+		.res & {
+			top: -@promo-offset-base - 119px;
+		}
+		
+		.loggedin & {
+			top: -@promo-offset-base - 137px;
+		}
+		
+		.loggedin.res & {
+			top: -@promo-offset-base - 137px;
+		}
+		
+		.moderator & {
+			top: -@promo-offset-base - 187px;
+		}
+		
+		.moderator.res & {
+			top: -@promo-offset-base - 209px;
+		}
+		
+		// Dammit, Chrome. Why is your text rendering so bad?
+		@media screen and (-webkit-min-device-pixel-ratio:0) {
+			top: -@promo-offset-base - 77px;
+			
+			.res & {
+				top: -@promo-offset-base - 97px;
+			}
+			
+			.loggedin & {
+				top: -@promo-offset-base - 132px;
+			}
+			
+			.loggedin.res & {
+				top: -@promo-offset-base - 152px;
+			}
+			
+			.moderator & {
+				top: -@promo-offset-base - 183px;
+			}
+			
+			.moderator.res & {
+				top: -@promo-offset-base - 103px;
+			}
+		}
+	}
+	
+	.md p:first-of-type {
+		position: relative;
+	}
+	
+	// Hide the "who made it/age" section
+	.bottom {
+		display: none;
+	}
+	
+	// Bottom ad area
+	#ad_main {
+		//.side-sandwich-border();
+	}
+	
+	// Large mod message button
+	a.helplink {
+		display: block;
+		width: 278px;
+		position: absolute;
+		float: none;
+		
+		margin-top: 54px;
+		margin-left: 10px;
+		padding: 6px 0;
+		
+		.side-fancy-button-bg();
+		.side-fancy-button-text();
+		
+		.side-header-case-fix();
+		
+		&:hover {
+			.side-fancy-button-hover-bg();
+		}
+		
+		& + .title + .content {
+			padding-top: 52px;
+		}
+	}
+}
+
+// Login
+.login-form-side {
+	position: absolute;
+	top: @srbar-height + @header-height - @content-padding - 70px;
+	z-index: 9001;
+	
+	background-color: @tabs-bg;
+	border: none;
+	box-shadow: 0 0 3px 0 fade(@color-black, 75%);
+	
+	color: @side-color;
+	
+	input {
+		.side-dark-textfield();
+	}
+	
+	button {
+		padding: 0 6px;
+	}
+}
+
+// Search
+#search {
+	position: relative;
+	
+	z-index: 9000;
+	
+	margin: -@spacer-margin-top @search-padding 0 0;
+	
+	input[type="submit"] {
+		z-index: 3;
+		
+		margin-left: -28px;
+		
+		background-image: url(%%sprite-reddit%%) !important;
+		background-position: -20px -838px !important;
+		background-color: transparent !important;
+	}
+	
+	input[type="text"] {
+		.side-dark-textfield();
+		
+		width: @search-width;
+		height: @search-height;
+		
+		position: relative;
+		z-index: 2;
+		
+		margin: @search-padding;
+		padding: 3px 0px;
+		
+		font-size: 16px;
+		text-indent: 6px;
+		
+		&:focus {
+			border-bottom-style: none !important;
+		}
+	}
+}
+
+#searchexpando {
+	width: @search-width - 20px - 2px;
+	
+	position: absolute;
+	top: @search-height;
+	left: 6px;
+	z-index: 1;
+	
+	background-color: @side-bg;
+	border-color: @color-gray;
+	border-radius: 0;
+	
+	transition: border-color @transition-time ease;
+	
+	#search input[type="text"]:focus ~ & {
+		border-color: @color-blue !important;
+	}
+	
+	label {
+		color: @color-light-gray;
+	}
+	
+	p {
+		margin: 6px 0 4px 0px;
+		
+		font-size: smaller;
+	}
+}
+
+// Submit buttons
+.submit {
+	.morelink {
+		width: 132px !important;
+		
+		.side-fancy-button-bg();
+		
+		&:hover {
+			.side-fancy-button-hover-bg();
+		}
+		
+		a {
+			font-weight: normal;
+			font-size: 18px;
+			letter-spacing: 1px;
+			color: @submit-color !important;
+		}
+		
+		.nub {
+			background: none;
+		}
+	}
+	
+	&.submit-link {
+		margin-top: -@spacer-margin-bottom;
+		
+		padding: 8px 8px 8px 9px;
+	}
+	
+	&.submit-text {
+		float: right;
+		position: relative;
+		margin-top: -51px;
+		margin-right: 10px;
+	}
+	
+	// Disabled submit buttons
+	&.disabled {
+		.morelink {
+			display: none;
+		}
+		
+		.spacer {
+			padding: 8px 12px;
+		}
+		
+		.subtitle {
+			margin: 0;
+			
+			font-size: 0;
+			
+			&:after {
+				content: @submit-flood-warning;
+				font-size: 13px;
+				color: rgb(255, 20, 20);
+				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+			}
+		}
+	}
+	
+	// Submit button rules warning
+	body:not(.subscriber) &.submit-text::after {
+		content: @submit-rules-warning;
+		display: block;
+		width: 262px;
+		height: 30px;
+		position: absolute;
+		top: -9px;
+		left: -155px;
+		
+		padding: 9px 2px 9px 35px;
+		
+		background-color: rgba(25, 25, 25, 0.88);
+		
+		text-align: center;
+		color: rgb(230, 230, 230);
+		font-size: 12px;
+		text-shadow: 1px 1px 1px black;
+		
+		transition: opacity @transition-time linear (@transition-time + 0.05s), top @transition-time linear (@transition-time + 0.05s);
+	}
+	
+	body:not(.subscriber) &.submit-text::before {
+		content: "";
+		display: block;
+		width: 24px;
+		height: 24px;
+		position: absolute;
+		top: 3px;
+		left: -145px;
+		z-index: 2;
+		
+		background-image: url(%%lock%%);
+		
+		transition: transform @transition-time linear, top @transition-time linear (@transition-time + 0.05s);
+	}
+}
+
+// Hide submit button rules warning
+.spacer:hover + .spacer > .submit-text::before, .submit-text:hover::before,
+.spacer:focus + .spacer > .submit-text::before, .submit-text:focus::before {
+	transform: rotateZ(-90deg);
+	top: -38px !important;
+}
+
+.spacer:hover + .spacer > .submit-text::after, .submit-text:hover::after,
+.spacer:focus + .spacer > .submit-text::after, .submit-text:focus::after {
+	opacity: 0;
+	top: -46px !important;
+}
+
+// Bottom boxes
+.icon-menu a {
+	background: none;
+}
+
+// Create subreddit button
+.sidebox.create {
+	margin: 0 @content-padding 20px @content-padding;
+	
+	background-color: transparent !important;
+	border-radius: 0 !important;
+	
+	transition: border-color @transition-time ease;
+	
+	.morelink {
+		.side-fancy-button-bg();
+		
+		&:hover {
+			.side-fancy-button-hover-bg();
+		}
+		
+		a {
+			.side-fancy-button-text();
+		}
+		
+		.nub {
+			display: none;
+		}
+	}
+	
+	.spacer {
+		display: none;
+	}
+}
+
+// Subscribe hover thing
+.hover-bubble.multi-selector {
+	@bg: fade(@color-dark-gray, 90%);
+	
+	background-color: @bg;
+	border: 1px solid @color-blue;
+	
+	&.anchor-right.anchor-right:before,
+	&.anchor-left.anchor-right:before {
+		border-left-color: @color-blue;//rgba(14, 137, 204, 0.6);
+	}
+
+	&.anchor-right.anchor-right:after,
+	&.anchor-left.anchor-right:after {
+		border-left-color: @bg;
+	}
+	
+	strong {
+		color: @color-blue;
+	}
+	
+	label {
+		color: @color-white;
+		
+		&:hover {
+			background-color: @bg;
+		}
+	}
+	
+	.create-multi input.multi-name {
+		background-color: @bg;
+		border-color: @color-blue;
+		
+		color: @color-white;
+	}
+}

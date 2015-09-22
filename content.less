@@ -1,0 +1,49 @@
+@import (reference) "style";
+
+body > .content {
+	width: @content-width;
+	
+	margin: (@tabs-height - 1px) 0 0 @content-padding;
+	padding: @content-padding;
+	
+	background-color: @content-bg;
+}
+
+.link {
+	.rank {
+		display: none;
+	}
+	
+	.thumbnail {
+		&.self {
+			background-image: url(%%default-thumbnail%%);
+			background-position: center;
+		}
+	}
+	
+	.title {
+		a.title {
+			color: @color-blue;
+		}
+	}
+	
+	.domain {
+		visibility: hidden;
+		
+		a {
+			visibility: visible;
+		}
+	}
+}
+
+.link.stickied {
+	.thumbnail {
+		background-image: url(%%sticky-thumbnail%%);
+	}
+	
+	.title {
+		a.title {
+			color: rgb(34, 136, 34);	// Default sticky color
+		}
+	}
+}

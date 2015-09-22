@@ -1,0 +1,67 @@
+.wiki-page {
+	.wiki {
+		margin-left: 10px;
+		margin-top: 40px;
+	}
+	
+	.wikititle {
+		display: none;
+	}
+	
+	.wiki-page-content {
+		margin: 15px;
+	}
+	
+	.pageactions {
+		position: absolute;
+		top: 240px;
+		left: 17px;
+		
+		border-radius: 0;
+		
+		.wikiaction {
+			margin: 1px;
+			
+			border-radius: 0;
+		}
+		
+		.wikiaction-current {
+			background-color: rgb(14, 137, 204);
+		}
+	}
+	
+	.toc {
+		margin-right: 10px;
+		
+		> ul {
+			padding: 4px 8px !important;
+			
+			background-color: white;
+			
+			li {
+				@media all and (min-height: 740px) and (max-height: 799px) {
+					font-size: 12px;
+				}
+				
+				@media all and (max-height: 739px) {
+					font-size: 11px;
+				}
+			}
+			
+			> li:not(.toc_child) {
+				font-weight: bold;
+			}
+		}
+	}
+	
+	// Rules
+	&.wiki-page-rules {
+		
+	}
+	
+	// RES fixes
+	.markdownEditor-wrapper {
+		max-height: 30px;
+		margin-top: 34px;
+	}
+}

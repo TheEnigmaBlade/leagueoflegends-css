@@ -1,0 +1,147 @@
+@import (reference) "style";
+
+/*******
+* Page *
+*******/
+
+body {
+	background-image: url(%%bg%%) !important;
+	background-repeat: no-repeat;
+	background-color: @bg-color !important;
+	background-position: @bg-pos;
+	background-size: @bg-size;
+	& when (@bg-dynamic = true) {
+		background-attachment: fixed;
+	}
+}
+
+a,
+.tagline a,
+html.res-nightmode .res-nightmode a,
+html.res-nightmode .res-nightmode a.option {
+	color: @color-blue;
+}
+
+.link-transition {
+	transition: color @transition-time ease;
+	text-decoration: none !important;
+}
+
+@import "header";
+@import "content";
+@import "sidebar";
+
+// Arrows
+.thing .midcol {
+	width: 20px;
+	position: relative;
+	overflow: visible;
+	z-index: 1;
+}
+
+.gadget .midcol:extend(.thing .midcol) {
+	margin-right: 4px;
+}
+
+.arrow {
+	width: 20px;
+	height: 16px;
+    position: relative;
+    
+    background-image: url(%%arrows%%) !important;
+}
+
+.arrow.up,
+html:lang(dd) div.arrow.up,
+html.res-nightmode div.arrow.up {
+	bottom: 0;
+    background-position: 0px 0px !important;
+	
+    transition: bottom @transition-time ease;
+    
+	&:hover {
+        bottom: 2px;
+		background-position: -20px 0px !important;
+	}
+}
+
+.arrow.down,
+html:lang(dd) div.arrow.down,
+html.res-nightmode div.arrow.down {
+	top: 0;
+    background-position: 0px -16px !important;
+	opacity: 0.3;
+	
+    transition: top @transition-time ease;
+    
+	&:hover {
+        top: 2px;
+		background-position: -20px -16px !important;
+		opacity: 1.0;
+	}
+}
+
+.arrow.upmod,
+html:lang(dd) div.arrow.upmod,
+html.res-nightmode div.arrow.upmod {
+	background-position: -40px 0px !important;
+}
+
+.arrow.downmod,
+html:lang(dd) div.arrow.downmod,
+html.res-nightmode div.arrow.downmod {
+	background-position: -40px -16px !important;
+}
+
+// Downvote message
+.comment .arrow.down:hover::before {
+	content: @downvote-message;
+	display: block;
+	width: 250px;
+	line-height: 12px;
+	position: relative;
+	top: -2px;
+	left: -1px;
+	z-index: -1;
+	
+	padding: 3px 3px 3px 24px;
+	
+	background-color: black;
+	border: 1px solid gray;
+	border-radius: 2px;
+	color: white;
+}
+
+// Footer
+.footer {
+	background: none;
+	border: none;
+	border-radius: 0;
+}
+
+/****************
+* Link listings *
+****************/
+
+
+
+/***********
+* Comments *
+***********/
+
+
+
+/*******************
+* Submission pages *
+*******************/
+
+
+
+/***********
+* Includes *
+***********/
+
+@import "mod";
+@import "markdown";
+@import "res-fixes";
+//@import "darkmode";

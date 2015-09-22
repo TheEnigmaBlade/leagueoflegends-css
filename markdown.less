@@ -1,0 +1,37 @@
+/****************
+* Basic styling *
+****************/
+
+.thing .md {
+    font-family: @font-family;
+}
+
+/**************************
+* Markdown-based features *
+**************************/
+
+// Spoiler Tag
+// TODO: steal /r/anime spoiler tags (more robust)
+a[href$="/spoiler"], a[href$="#spoiler"] {
+	background: none repeat scroll 0 0 #000000 !important;
+	color: #000000 !important;
+	cursor: default;
+	
+	&:hover {
+		color: #FFFFFF !important;
+	}
+}
+
+// AutoWikibot hover to display by /u/Dropping_fruits
+.comment .md h5+h6+h4+p,.comment .md h5+h6+h4+p+hr,.comment .md h5+h6+h4+p+hr+blockquote,.comment .md h5+h6+h4+p+hr+blockquote+hr,.comment .md h5+h6+h4+p+hr+blockquote+hr+p,.comment .md h5+h6+h4+p+hr+blockquote+hr+p+p {
+	display: none;
+}
+.comment .md:hover h5+h6+h4+p,.comment .md:hover h5+h6+h4+p+hr,.comment .md:hover h5+h6+h4+p+hr+blockquote,.comment .md:hover h5+h6+h4+p+hr+blockquote+hr,.comment .md:hover h5+h6+h4+p+hr+blockquote+hr+p,.comment .md:hover h5+h6+h4+p+hr+blockquote+hr+p+p {
+	display: block;
+}
+.comment .md h5+h6+h4:after {
+	content: "AutoWikibot post. Hover to view.";
+}
+.comment .md:hover h5+h6+h4:after {
+	content: "";
+}

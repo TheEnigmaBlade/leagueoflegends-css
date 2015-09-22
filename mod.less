@@ -1,0 +1,35 @@
+// Removed things
+.thing.spam {
+    background-color: @mod-remove-bg !important;
+}
+
+// Mod buttons
+.entry .buttons {
+	
+	.remove-button a {
+		color: @mod-remove-color !important;
+		
+		&:hover {
+			color: saturate(@mod-remove-color, 25%) !important;
+		}
+	}
+	
+	.approve-button a{
+		color: @mod-approve-color !important;
+		
+		&:hover {
+			color: saturate(@mod-approve-color, 25%) !important;
+		}
+	}
+}
+
+// Report reasons
+.thing .report-reasons {
+    padding: 4px 0;
+}
+
+.thing .buttons li.reported-stamp,
+.thing .report-reasons li {
+	color: black;
+	opacity: 1;
+}

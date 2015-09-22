@@ -1,0 +1,44 @@
+@import (reference) "style-darkmode";
+
+// Variables
+@darkmode-selector: ~"html:lang(dd)";
+@nightmode-selector: ~"html.res-nightmode";
+
+/*************************
+* Darkmode and nightmode *
+*************************/
+
+@{darkmode-selector}, @{nightmode-selector} {
+	// Vote arrows
+	.arrow.up,
+	.arrow.upmod,
+	.arrow.down,
+	.arrow.downmod,
+	.arrow.up:hover,
+	.arrow.upmod:hover,
+	.arrow.down:hover,
+	.arrow.downmod:hover {
+		background-image: url(%%arrows-dark%%) !important;
+		width: 20px !important;
+		height: 16px !important;
+	}
+}
+
+/****************
+* RES nightmode *
+****************/
+
+.nightmode-bg-fix() {
+	background-color: transparent !important;
+}
+
+@{nightmode-selector} {
+	#header,
+	#header-bottom-left,
+	:not([class*="-page"]) .content[role="main"],
+	.submit-page .content,
+	.icon-menu a,
+	.side blockquote ul {
+		.nightmode-bg-fix();
+	}
+}

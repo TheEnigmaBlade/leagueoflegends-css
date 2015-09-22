@@ -1,0 +1,138 @@
+/****************
+* Reddit values *
+****************/
+
+@spacer-margin-top: 7px;
+@spacer-margin-bottom: 12px;
+
+/* Construction */
+
+@content-padding: 10px;
+@search-padding: 6px;
+
+// Widths
+@side-width: 300px;
+@side-border-space: 1px;
+
+@content-padding-total: @content-padding * 2;
+@consumed-content-width: @side-width + @side-border-space + @content-padding-total * 2;
+@content-width: calc(~"100% - @{consumed-content-width}");
+@tabs-width: calc(~"100% - @{content-padding-total}");
+
+@search-width: @side-width - @search-padding * 2;
+
+// Heights
+@srbar-height: 18px;
+@header-height: 150px;
+@tabs-height: 40px;
+
+@search-height: @tabs-height - @search-padding * 2;
+
+// Positions
+@tabs-top: @srbar-height + @header-height;
+
+/********
+* Style *
+********/
+
+// Images
+@promo-img: "images/promo.png";
+
+// General
+@font-family: arial,sans-serif;
+@transition-time: 0.15s;
+
+@color-blue: rgb(0, 150, 255);
+@color-dark-gray: rgb(22, 22, 22);
+@color-gray: lighten(@color-dark-gray, 8%);
+@color-light-gray: rgb(150, 150, 150);
+@color-white: rgb(246, 246, 246);
+@color-black: rgb(5, 5, 5);
+
+// Background
+@bg-color: rgb(0, 0, 0);
+@bg-pos: 0 @srbar-height;
+@bg-size: 100%;
+@bg-dynamic: false;
+
+// Subreddit bar
+@srbar-bg: @color-dark-gray;
+@srbar-border: @color-gray;
+@srbar-color: @color-light-gray;
+@srbar-alt-color: @color-blue;
+
+// Tab bar
+@tabs-bg: @color-dark-gray;
+@tabs-color: @color-light-gray;
+
+// Content
+@content-bg: @color-white;
+@content-border-color: @color-gray;
+
+@content-shadow-color: fade(black, 50%);
+
+// Sidebar
+@side-bg: @color-black;
+@side-border-color: @color-gray;
+@side-color: @color-light-gray;
+@side-padding: 8px;
+
+@side-header-color: @side-color;
+@side-header-size: 24px;
+
+@side-md-top-margin: @side-padding;
+
+// Submit buttons
+//@submit-bg: rgb(85, 54, 33);
+//@submit-color: rgb(202, 181, 162);
+@submit-bg: @color-gray;
+@submit-border: @submit-bg;
+@submit-color: @color-white;
+@submit-hover-border: @color-blue;
+@submit-hover-color: @color-blue;
+
+// Announcments
+@announce-bg: @events-bg-alt;
+@announce-bg-hover: @events-bg-hover;
+@announce-color-hover: @color-white;
+
+@announce-border-color: @side-border-color;
+
+// Events
+@events-bg: @color-black;
+@events-bg-alt: lighten(@events-bg, 2%);
+@events-bg-hover: lighten(@events-bg, 10%);
+
+@events-color: @color-light-gray;
+@events-link-color: @color-blue;
+
+// Mod stuff
+@mod-remove-bg: rgb(206, 238, 252);
+//@mod-buttons-color: rgb(170, 170, 170);
+@mod-remove-color: rgb(240, 100, 100);
+@mod-approve-color: rgb(100, 220, 100);
+
+/*******
+* Text *
+*******/
+
+@downvote-message: "off-topic or does not contribute to discussion";
+
+@no-results-message: "there don't seem to be any friends here";
+
+@side-user-text: "Summoners";
+@side-online-text: "on the Rift";
+
+@submit-flood-warning: "Submissions are temporarily disabled to prevent excessive flooding.";
+@submit-rules-warning: "Please read subreddit rules before posting. Subscribe or hover to dismiss.";
+
+@submit-type-select-message: "Remember to choose the correct post type!";
+@submit-type-select-link-message: "Images must NOT be submitted as links.";
+@submit-text-message: "You are submitting a text-based post. A title is required, but expanding further in the text field is not. Including 'upvote if' or 'don't upvote' is violation of Bandle City law.";
+
+/********************
+* Media query stuff *
+********************/
+
+@screen-lg: 1200px;
+@screen-md: 992px;
