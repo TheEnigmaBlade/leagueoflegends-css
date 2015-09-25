@@ -175,8 +175,16 @@
 	margin: 0 @content-padding;
 	
 	background-color: @tabs-bg;
-	box-shadow: 0 -2px 4px 0px @content-shadow-color;
+	box-shadow: 0 -2px 3px 0px @content-shadow-color;
 	
+    // Special case for submit page: contained withing form#newlink
+    &.formtab {
+        @w: @side-width - @content-padding;
+        width: calc(~'100% - -@{w}');
+        top: -39px;
+        left: -@content-padding;
+    }
+    
 	li {
 		display: inline-block;
 		
@@ -192,10 +200,18 @@
 			color: @tabs-color;
 			font-size: 14px;
 			font-weight: normal;
+            
+            transition: color @transition-time linear;
 		}
+        
+        &:hover {
+            a {
+                color: @color-white;
+            }
+        }
 		
 		&.selected {
-			a {
+ 			a {
 				background: none;
 				border: none;
 				

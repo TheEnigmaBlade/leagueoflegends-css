@@ -6,6 +6,63 @@
     font-family: @font-family;
 }
 
+/****************
+* Comment faces *
+****************/
+
+.md a {
+    @face-w: 100px;
+    @face-h: 101px;
+    
+    &[href^="#face-"] {
+        display: inline-block;
+        width: @face-w;
+        height: @face-h;
+        background-image: url(%%comment-faces%%);
+    }
+    
+    .make-face(@name, @x, @y) {
+        &[href="#face-@{name}"] {
+            background-position: -(@x * @face-w) -(@y * @face-h);
+        }
+    }
+    
+    .make-face("wink", 0, 0);
+    .make-face("ok", 1, 0);
+    .make-face("palm", 2, 0);
+    .make-face("angry", 3, 0);
+    
+    .make-face("cry", 0, 1);
+    .make-face("success", 1, 1);
+    .make-face("draaaven", 2, 1);
+    .make-face("fiteme", 3, 1);
+    
+    .make-face("love", 0, 2);
+    .make-face("nope", 1, 2);
+    .make-face("dwi", 2, 2);
+    .make-face("flip", 3, 2);
+    
+    .make-face("party", 0, 3);
+    .make-face("tear", 1, 3);
+    .make-face("troll", 2, 3);
+    .make-face("support", 3, 3);
+    
+    .make-face("yeah", 0, 4);
+    .make-face("eww", 1, 4);
+    .make-face("wat", 2, 4);
+    .make-face("yandere", 3, 4);
+
+    .make-face("popcorn", 3, 5);
+    .make-face("hnng", 1, 5);
+    .make-face("fabulous", 0, 5);
+    .make-face("sleepy", 1, 5);
+    
+    .make-face("wind", 0, 6);
+    .make-face("high", 1, 6);
+    .make-face("hmm", 2, 6);
+    .make-face("crickets", 3, 6);
+}
+
 /**************************
 * Markdown-based features *
 **************************/

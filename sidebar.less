@@ -52,24 +52,55 @@
 
 // Subreddit info
 .linkinfo {
-	.totalvotes {
-		margin-left: 8px;
-		
-		span {
-			font-size: 13px;
+	position: relative;		// For z-index
+	z-index: 3;
+	
+	margin-top: -13px;
+	margin-bottom: 13px;
+	
+	background-color: @tabs-bg;
+	border: none;
+	border-radius: 0;
+	
+	text-align: center;
+	color: @color-light-gray;
+	font-size: 14px;
+	
+	.date {
+		margin-bottom: @side-padding;
+	}
+	
+	.score {
+		.number, .word {
+			color: @color-white;
 		}
 	}
 	
-	.upvotes {
-		color: rgb(205, 69, 0) !important;
-		
-		span:extend(.linkinfo .totalvotes span) {}
+	.totalvotes {
+		span {
+			font-size: 14px;
+		}
 	}
 	
-	.downvotes {
+	.upvotes:extend(.linkinfo .totalvotes all) {
+		color: rgb(205, 69, 0) !important;
+	}
+	
+	.downvotes:extend(.linkinfo .totalvotes all) {
 		color: rgb(95, 153, 207) !important;
+	}
+	
+	.shortlink {
+		font-size: 0;
 		
-		span:extend(.linkinfo .totalvotes span) {}
+		margin-top: @side-padding;
+		margin-bottom: @side-padding;
+		
+		input {
+			.side-dark-textfield();
+			
+			font-size: 13px;
+		}
 	}
 }
 
@@ -85,6 +116,13 @@
 	
 	// Subscriber and current users
 	.subscribers {
+		display: inline-block;
+		width: 100%;
+		height: 22px;
+		
+		font-size: 14px;
+		text-align: center;
+		
 		&:after {
 			content: @side-user-text;
 		}
@@ -95,6 +133,12 @@
 	}
 
 	.users-online {
+		text-align: center;
+		
+		&:before {
+			display: none;
+		}
+		
 		&:after {
 			content: "@{side-online-text}";
 		}
@@ -139,10 +183,10 @@
 	// Configure RES's wrapper around sub buttons
 	.subButtons {
 		display: table;
-		width: 290px;
+		width: 100%;
 		height: 24px;
 		
-		padding-left: 4px;
+		text-align: center;
 		
 		.subscribe-button {
 			display: inline-block;
@@ -152,8 +196,7 @@
 	// Button options
 	.leavemoderator,
 	form.leavecontributor-button {
-		height: 10px;
-		margin-right: -13px;
+		height: 24px;
 		
 		background: none;
 		
@@ -196,14 +239,15 @@
 }
 
 // Main stuff
-
 .side {
+	position: relative;	// Prevents body::before from overlapping
 	margin: 0 @content-padding 0 0;
 	
 	background-color: @side-bg !important;
 	border-right: 1px solid @color-dark-gray;
 	border-bottom: 1px solid @color-dark-gray;
 	
+	// Adjust layout of containers
 	.md-container {
 		margin: @side-md-top-margin -@side-padding 0 -@side-padding;
 	}
@@ -211,6 +255,13 @@
 	.md-section {
 		margin-left: @side-padding;
 		margin-right: @side-padding;
+	}
+	
+	// Randomly appearing sponsorship box really messes things up
+	.sponsorshipbox {
+		margin-top: -(@spacer-margin-top + 6px);
+		
+		background-color: @tabs-bg;
 	}
 	
 	// Mod-editable markdown area
@@ -241,6 +292,10 @@
 		
 		// Section headers
 		> h1, > h2, > h3, > h4 {
+			line-height: @side-header-height;
+			
+			background-color: @side-header-bg;
+			
 			color: @side-header-color;
 			font-size: @side-header-size;
 			font-weight: normal;
@@ -423,27 +478,41 @@
 		@promo-offset-base: @promo-height + @side-md-top-margin;
 		
 		// Position adjustments based on login and RES states
+		//TODO
 		.res & {
 			top: -@promo-offset-base - 119px;
 		}
 		
+		//TODO
 		.loggedin & {
-			top: -@promo-offset-base - 137px;
+			top: -@promo-offset-base - 127px;
 		}
 		
+		//TODO
 		.loggedin.res & {
-			top: -@promo-offset-base - 137px;
+			top: -@promo-offset-base - 127px;
 		}
 		
+		.contributor & {
+			top: -@promo-offset-base - 147px;
+		}
+		
+		//TODO
+		.contributor.res & {
+			top: -@promo-offset-base - 128px;
+		}
+		
+		//TODO
 		.moderator & {
 			top: -@promo-offset-base - 187px;
 		}
 		
 		.moderator.res & {
-			top: -@promo-offset-base - 209px;
+			top: -@promo-offset-base - 233px;
 		}
 		
 		// Dammit, Chrome. Why is your text rendering so bad?
+		//TODO
 		@media screen and (-webkit-min-device-pixel-ratio:0) {
 			top: -@promo-offset-base - 77px;
 			
@@ -456,6 +525,14 @@
 			}
 			
 			.loggedin.res & {
+				top: -@promo-offset-base - 132px;
+			}
+			
+			.contributor & {
+				top: -@promo-offset-base - 152px;
+			}
+			
+			.contributor.res & {
 				top: -@promo-offset-base - 152px;
 			}
 			
@@ -670,7 +747,7 @@
 		
 		padding: 9px 2px 9px 35px;
 		
-		background-color: rgba(25, 25, 25, 0.88);
+		background-color: rgba(24, 24, 24, 0.88);
 		
 		text-align: center;
 		color: rgb(230, 230, 230);

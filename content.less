@@ -1,15 +1,27 @@
 @import (reference) "style";
 
 body > .content {
+	position: relative;	// Prevents body::before from overlapping
 	width: @content-width;
 	
 	margin: (@tabs-height - 1px) 0 0 @content-padding;
 	padding: @content-padding;
 	
 	background-color: @content-bg;
+	
+	.rounded {
+		border-radius: 0;
+	}
 }
 
-.link {
+// Links
+
+.thing.link {
+	margin-bottom: @content-padding;
+	padding-bottom: @content-padding;
+	
+	border-bottom: 1px solid darken(@content-bg, 5%);
+	
 	.rank {
 		display: none;
 	}
@@ -23,7 +35,16 @@ body > .content {
 	
 	.title {
 		a.title {
-			color: @color-blue;
+			color: @link-color;
+		}
+		
+		&.visited a.title,
+		a.title:visited {
+			color: @link-visited-color;
+		}
+		
+		a.title:hover {
+			color: @link-hover-color;
 		}
 	}
 	
@@ -34,16 +55,207 @@ body > .content {
 			visibility: visible;
 		}
 	}
-}
-
-.link.stickied {
-	.thumbnail {
-		background-image: url(%%sticky-thumbnail%%);
+	
+	.author {
+		color: @link-color;
 	}
 	
-	.title {
-		a.title {
-			color: rgb(34, 136, 34);	// Default sticky color
+	&.self {
+		.expando .md {
+			background-color: @content-text-bg;
+			border-color: @content-text-border;
+			border-radius: 0;
+		}
+	}
+	
+	&.stickied {
+		.thumbnail {
+			background-image: url(%%sticky-thumbnail%%);
+		}
+		
+		.title {
+			a.title {
+				color: @sticky-color;
+			}
+		}
+	}
+	
+	.stickied-tagline {
+		color: @sticky-color;
+	}
+}
+
+// Comments
+
+// Alternating comment coloring
+.comment {
+	background-color: @comment-lvl1-bg !important;
+}
+.comment .comment {
+	background-color: @comment-lvl2-bg !important;
+}
+
+.generate-comment-bgs(11);
+.generate-comment-bgs(@max-i; @i: 1) when (@i <= @max-i) {
+	.comment when (@i <= 2) {
+		.generate-comment-bgs(@max-i; @i + 1);
+	}
+	.comment when (@i > 2) and (mod(@i, 2) = 0) {
+		&:extend(.comment .comment);
+		.generate-comment-bgs(@max-i; @i + 1);
+	}
+	.comment when (@i > 2) and (mod(@i, 2) = 1) {
+		&:extend(.comment);
+		.generate-comment-bgs(@max-i; @i + 1);
+	}
+}
+
+.thing.comment {
+	padding: 5px;
+	margin: 0 5px 5px 10px;
+	
+	border-radius: 0 !important;
+	border: 1px solid @comment-border !important;
+	
+	&:hover {
+		border-color: @comment-hover-border !important;
+	}
+	
+	.child {
+		border-left: none;
+	}
+	
+	body:not(.moderator) & .report-button a {
+		color: @report-color;
+	}
+}
+
+// General
+
+.thing {
+	.buttons {
+		li {
+			&.reply-button a,
+			a.comments {
+				color: @color-blue;
+			}
+		}
+	}
+	
+	.tagline {
+		.submitter {
+			color: @submitter-color;
+		}
+		
+		.moderator {
+			color: @moderator-color;
+		}
+		
+		.admin {
+			color: @admin-color;
+		}
+	}
+}
+
+// Arrows
+
+.thing .midcol {
+	width: 20px;
+	position: relative;
+	overflow: visible;
+	z-index: 1;
+}
+
+.gadget .midcol:extend(.thing .midcol) {
+	margin-right: 4px;
+}
+
+.arrow {
+	width: 20px;
+	height: 16px;
+    position: relative;
+    
+    background-image: url(%%arrows%%) !important;
+}
+
+.arrow.up,
+html:lang(dd) div.arrow.up,
+html.res-nightmode div.arrow.up {
+	bottom: 0;
+    background-position: 0px 0px !important;
+	
+    transition: bottom @transition-time ease;
+    
+	&:hover {
+        bottom: 2px;
+		background-position: -20px 0px !important;
+	}
+}
+
+.arrow.down,
+html:lang(dd) div.arrow.down,
+html.res-nightmode div.arrow.down {
+	top: 0;
+    background-position: 0px -16px !important;
+	opacity: 0.3;
+	
+    transition: top @transition-time ease;
+    
+	&:hover {
+        top: 2px;
+		background-position: -20px -16px !important;
+		opacity: 1.0;
+	}
+}
+
+.arrow.upmod,
+html:lang(dd) div.arrow.upmod,
+html.res-nightmode div.arrow.upmod {
+	background-position: -40px 0px !important;
+}
+
+.arrow.downmod,
+html:lang(dd) div.arrow.downmod,
+html.res-nightmode div.arrow.downmod {
+	background-position: -40px -16px !important;
+}
+
+// Downvote message
+.comment .arrow.down::before {
+	content: @downvote-message;
+	display: block;
+	width: 250px;
+	line-height: 12px;
+	position: relative;
+	top: -2px;
+	left: -1px;
+	z-index: -1;
+	
+	padding: 3px 3px 3px 24px;
+	
+	background-color: black;
+	border: 1px solid gray;
+	border-radius: 2px;
+	color: white;
+	
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity @transition-time linear;
+}
+
+.comment .arrow.down:hover::before {
+	visibility: visible;
+	opacity: 1;
+}
+
+// Submit page
+
+.submit-page {
+	.submit {
+		.roundfield {
+			background-color: @content-text-bg;
+			border-color: @content-text-border;
+			border-radius: 0;
 		}
 	}
 }

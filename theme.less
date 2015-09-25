@@ -1,8 +1,13 @@
 @import (reference) "style";
+@import "animations";
 
 /*******
 * Page *
 *******/
+
+html {
+	overflow-x: hidden;
+}
 
 body {
 	background-image: url(%%bg%%) !important;
@@ -12,6 +17,43 @@ body {
 	background-size: @bg-size;
 	& when (@bg-dynamic = true) {
 		background-attachment: fixed;
+	}
+	
+	// Fog/mist animations
+	
+	&::before {
+		content: "";
+		width: 100%;
+		height: 400px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		
+		background-image: url(%%fog%%);
+		background-size: auto 400px;
+		background-position: 0 0;
+		opacity: 0;
+		
+		//transform: translate3d(0, 0, 0);
+		animation: mist 120s linear infinite;
+	}
+	
+	.footer-parent::before {
+		content: "";
+		width: 100%;
+		height: 200px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 0;
+		
+		background-image: url(%%mist%%);
+		background-size: 5760px 250px;
+		background-position: 0 0;
+		opacity: 0;
+		
+		//transform: translate3d(0, 0, 0);
+		animation: mist 160s linear infinite;
 	}
 }
 
@@ -26,6 +68,10 @@ html.res-nightmode .res-nightmode a.option {
 	transition: color @transition-time ease;
 	text-decoration: none !important;
 }
+
+/***************
+* Page content *
+***************/
 
 @import "header";
 @import "content";
@@ -94,7 +140,7 @@ html.res-nightmode div.arrow.downmod {
 }
 
 // Downvote message
-.comment .arrow.down:hover::before {
+.comment .arrow.down::before {
 	content: @downvote-message;
 	display: block;
 	width: 250px;
@@ -110,6 +156,15 @@ html.res-nightmode div.arrow.downmod {
 	border: 1px solid gray;
 	border-radius: 2px;
 	color: white;
+	
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity @transition-time linear;
+}
+
+.comment .arrow.down:hover::before {
+	visibility: visible;
+	opacity: 1;
 }
 
 // Footer
@@ -118,24 +173,6 @@ html.res-nightmode div.arrow.downmod {
 	border: none;
 	border-radius: 0;
 }
-
-/****************
-* Link listings *
-****************/
-
-
-
-/***********
-* Comments *
-***********/
-
-
-
-/*******************
-* Submission pages *
-*******************/
-
-
 
 /***********
 * Includes *
