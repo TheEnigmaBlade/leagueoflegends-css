@@ -1,6 +1,28 @@
+@import (reference) "style";
+
 // content.less: body > .content
 html.res-commentBoxes body > .content {
 	padding-right: @content-padding !important;
 }
 
 .res-commentBoxes.res-commentBoxes-rounded .content .thing.comment:extend(.thing.comment all) {}
+
+// RES NER boxes
+.content .NERPageMarker {
+	margin: 0 -@content-padding @content-padding;
+	
+	background-color: darken(@content-bg, 10%);
+	border-color: darken(@content-bg, 20%);
+	border-style: solid none;
+	border-radius: 0;
+	
+	color: @color-gray;
+}
+
+#progressIndicator.neverEndingReddit,
+#NERFail {
+	&:extend(.content .NERPageMarker);
+	
+	width: 100%;
+	margin-bottom: -@content-padding;
+}

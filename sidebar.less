@@ -29,19 +29,20 @@
 	outline: 1px solid @submit-hover-color !important;
 }
 
-.side-fancy-button-text() {
+.side-fancy-button-text(@size: 18px) {
 	text-align: center;
+	font-family: @header-font-family;
 	font-weight: normal;
-	font-size: 18px;
+	font-size: @size;
 	letter-spacing: 1px;
 	color: @submit-color !important;
 }
 
 .side-dark-textfield() {
-	background-color: @side-bg;
-	border: 1px solid @color-gray !important;
+	background-color: @side-field-bg !important;
+	border: 1px solid @side-field-border !important;
 	
-	color: @tabs-color;
+	color: @side-field-color;
 	
 	transition: border-color @transition-time ease;
 	
@@ -58,7 +59,7 @@
 	margin-top: -13px;
 	margin-bottom: 13px;
 	
-	background-color: @tabs-bg;
+	background-color: @tabs-bg !important;
 	border: none;
 	border-radius: 0;
 	
@@ -93,7 +94,7 @@
 	.shortlink {
 		font-size: 0;
 		
-		margin-top: @side-padding;
+		margin-top: @side-padding + 2px;
 		margin-bottom: @side-padding;
 		
 		input {
@@ -244,8 +245,8 @@
 	margin: 0 @content-padding 0 0;
 	
 	background-color: @side-bg !important;
-	border-right: 1px solid @color-dark-gray;
-	border-bottom: 1px solid @color-dark-gray;
+	border-right: 1px solid @color-dark-gray !important;
+	border-bottom: 1px solid @color-dark-gray !important;
 	
 	// Adjust layout of containers
 	.md-container {
@@ -297,6 +298,7 @@
 			background-color: @side-header-bg;
 			
 			color: @side-header-color;
+			font-family: @header-font-family;
 			font-size: @side-header-size;
 			font-weight: normal;
 			text-align: center;
@@ -430,30 +432,6 @@
 		}
 	}
 	
-	// Bottom boxes (like mod tools and recently visited posts)
-	.sidecontentbox {
-		.title {
-			line-height: 40px;
-			
-			border-bottom: none;
-			
-			text-align: center;
-			
-			h1 {
-				display: inline-block;
-				.side-header-case-fix();
-				
-				font-weight: normal;
-				letter-spacing: 1px;
-				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-			}
-		}
-		
-		.collapse-button {
-			margin: 14px 6px;
-		}
-	}
-	
 	// Promo image
 	a[href$="#promo"] {
 		@promo-height: image-height(@promo-img);
@@ -483,23 +461,20 @@
 			top: -@promo-offset-base - 119px;
 		}
 		
-		//TODO
 		.loggedin & {
-			top: -@promo-offset-base - 127px;
+			top: -@promo-offset-base - 124px;
 		}
 		
-		//TODO
 		.loggedin.res & {
-			top: -@promo-offset-base - 127px;
+			top: -@promo-offset-base - 134px;
 		}
 		
 		.contributor & {
 			top: -@promo-offset-base - 147px;
 		}
 		
-		//TODO
 		.contributor.res & {
-			top: -@promo-offset-base - 128px;
+			top: -@promo-offset-base - 186px;
 		}
 		
 		//TODO
@@ -559,20 +534,45 @@
 	#ad_main {
 		//.side-sandwich-border();
 	}
+}
+
+// Bottom boxes
+.sidecontentbox {
+	margin: 10px;
+	padding: 5px;
+	
+	background-color: @announce-bg;
+	border: 1px solid @announce-border-color;
+	
+	.title {
+		text-align: center;
+		
+		h1 {
+			display: inline-block;
+			.side-header-case-fix();
+			
+			font-weight: normal;
+			letter-spacing: 1px;
+			color: @side-header-color;
+		}
+	}
+	
+	.content {
+		border: none;
+	}
 	
 	// Large mod message button
 	a.helplink {
 		display: block;
-		width: 278px;
+		width: @side-width - @content-padding-total - 15px;
 		position: absolute;
 		float: none;
 		
-		margin-top: 54px;
-		margin-left: 10px;
+		margin-top: 24px;
 		padding: 6px 0;
 		
 		.side-fancy-button-bg();
-		.side-fancy-button-text();
+		.side-fancy-button-text(17px);
 		
 		.side-header-case-fix();
 		
@@ -654,8 +654,8 @@
 	left: 6px;
 	z-index: 1;
 	
-	background-color: @side-bg;
-	border-color: @color-gray;
+	background-color: @side-field-bg;
+	border-color: @side-field-border !important;
 	border-radius: 0;
 	
 	transition: border-color @transition-time ease;
@@ -718,6 +718,8 @@
 		}
 		
 		.spacer {
+			margin-top: -@spacer-margin-top;
+			margin-bottom: -@spacer-margin-bottom;
 			padding: 8px 12px;
 		}
 		
@@ -728,7 +730,7 @@
 			
 			&:after {
 				content: @submit-flood-warning;
-				font-size: 13px;
+				font-size: 14px;
 				color: rgb(255, 20, 20);
 				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 			}
@@ -739,11 +741,11 @@
 	body:not(.subscriber) &.submit-text::after {
 		content: @submit-rules-warning;
 		display: block;
-		width: 262px;
+		width: 263px;
 		height: 30px;
 		position: absolute;
 		top: -9px;
-		left: -155px;
+		left: -156px;
 		
 		padding: 9px 2px 9px 35px;
 		
@@ -808,7 +810,7 @@
 		}
 		
 		a {
-			.side-fancy-button-text();
+			.side-fancy-button-text(17px);
 		}
 		
 		.nub {

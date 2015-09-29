@@ -177,11 +177,18 @@
 	background-color: @tabs-bg;
 	box-shadow: 0 -2px 3px 0px @content-shadow-color;
 	
-    // Special case for submit page: contained withing form#newlink
+    // Special case for submit page: contained within form#newlink
     &.formtab {
         @w: @side-width - @content-padding;
         width: calc(~'100% - -@{w}');
         top: -39px;
+        left: -@content-padding;
+    }
+    
+    // Special case for some mod pages: contained within content body
+    .content & {
+        width: calc(~'100% - -@{side-width}');
+        top: -@tabs-height;
         left: -@content-padding;
     }
     
@@ -195,9 +202,9 @@
 		}
 		
 		a {
-			background: none;
+			background: none !important;
 			
-			color: @tabs-color;
+			color: @tabs-color !important;
 			font-size: 14px;
 			font-weight: normal;
             
@@ -206,7 +213,7 @@
         
         &:hover {
             a {
-                color: @color-white;
+                color: @tabs-selected-color !important;
             }
         }
 		
@@ -215,8 +222,8 @@
 				background: none;
 				border: none;
 				
-				color: @color-white;
-				text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+				color: @tabs-selected-color !important;
+				text-shadow: 0 0 2px fade(@tabs-selected-color, 0.3);
 			}
 		}
 	}

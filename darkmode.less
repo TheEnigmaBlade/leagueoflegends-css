@@ -9,19 +9,41 @@
 *************************/
 
 @{darkmode-selector}, @{nightmode-selector} {
-	// Vote arrows
-	.arrow.up,
-	.arrow.upmod,
-	.arrow.down,
-	.arrow.downmod,
-	.arrow.up:hover,
-	.arrow.upmod:hover,
-	.arrow.down:hover,
-	.arrow.downmod:hover {
-		background-image: url(%%arrows-dark%%) !important;
-		width: 20px !important;
-		height: 16px !important;
+	body > .content {
+		background-color: @dark-content-bg;
 	}
+	
+	.thing.link {
+		border-color: darken(@dark-content-bg, 20%);
+		
+		&.self {
+			.expando .md {
+				background-color: @dark-content-text-bg;
+				border-color: @dark-content-text-border;
+			}
+		}
+	}
+	
+	.comments-page .commentarea {
+		.generate-comment-bgs(11);
+		.generate-comment-bgs(@max-i; @i: 1) when (@i <= @max-i) {
+			.comment when (mod(@i, 2) = 0) {
+				&:extend(.dark-comment2);
+				.generate-comment-bgs(@max-i; @i + 1);
+			}
+			.comment when (mod(@i, 2) = 1) {
+				&:extend(.dark-comment);
+				.generate-comment-bgs(@max-i; @i + 1);
+			}
+		}
+	}
+}
+
+.dark-comment {
+	background-color: @dark-comment-lvl1-bg !important;
+}
+.dark-comment2 {
+	background-color: @dark-comment-lvl2-bg !important;
 }
 
 /****************
@@ -33,12 +55,31 @@
 }
 
 @{nightmode-selector} {
+	ol,
 	#header,
 	#header-bottom-left,
 	:not([class*="-page"]) .content[role="main"],
+	.listing-page .link,
 	.submit-page .content,
 	.icon-menu a,
-	.side blockquote ul {
+	.side blockquote ul,
+	.side .leavemoderator,
+	.side .leavecontributor-button,
+	.sidebox,
+	.sidecontentbox .content,
+	.titlebox,
+	.titlebox form.flairtoggle {
 		.nightmode-bg-fix();
 	}
+	
+	h1 {
+		border: none;
+	}
 }
+
+// Importants applied:
+// .tabmenu li a: background, color, hover color
+// .side: border-right, border-bottom
+// .side-dark-textfield(): background-color
+// #searchexpando: border-color
+// .linkinfo

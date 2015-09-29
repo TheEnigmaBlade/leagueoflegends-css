@@ -87,7 +87,6 @@ body > .content {
 
 // Comments
 
-// Alternating comment coloring
 .comment {
 	background-color: @comment-lvl1-bg !important;
 }
@@ -114,7 +113,7 @@ body > .content {
 	padding: 5px;
 	margin: 0 5px 5px 10px;
 	
-	border-radius: 0 !important;
+	border-radius: 2px !important;
 	border: 1px solid @comment-border !important;
 	
 	&:hover {
@@ -127,6 +126,22 @@ body > .content {
 	
 	body:not(.moderator) & .report-button a {
 		color: @report-color;
+	}
+}
+
+.commentarea {
+	.infobar {
+		margin-right: 0;
+	}
+	
+	.usertext-edit {
+		textarea {
+			background-image: url(%%comment-msg%%);
+			
+			&:focus {
+				background-image: none;
+			}
+		}
 	}
 }
 
@@ -159,65 +174,111 @@ body > .content {
 
 // Arrows
 
-.thing .midcol {
+.link {
+	.midcol {
+		width: 36px !important;
+		
+		margin-left: 0;
+	}
+	
+	.score {
+		width: 35px;
+		
+		color: @color-light-gray;
+	}
+}
+
+.comment .midcol {
 	width: 20px;
-	position: relative;
-	overflow: visible;
 	z-index: 1;
 }
 
-.gadget .midcol:extend(.thing .midcol) {
+.gadget .midcol:extend(.comment .midcol) {
 	margin-right: 4px;
 }
 
+@arrow-width: image-width(@arrow-img) / 3;
+@arrow-height: image-height(@arrow-img) / 2;
+
 .arrow {
-	width: 20px;
-	height: 16px;
+	width: @arrow-width;
+	height: @arrow-height;
     position: relative;
     
-    background-image: url(%%arrows%%) !important;
+    background-image: url(%%arrows-bot%%) !important;
+	
+	&::after {
+		content: "";
+		width: @arrow-width;
+		height: @arrow-height;
+	    position: absolute;
+	    
+	    background-image: url(%%arrows-top%%) !important;
+	}
 }
 
-.arrow.up,
-html:lang(dd) div.arrow.up,
-html.res-nightmode div.arrow.up {
-	bottom: 0;
+.arrow.up {
     background-position: 0px 0px !important;
 	
-    transition: bottom @transition-time ease;
-    
-	&:hover {
-        bottom: 2px;
-		background-position: -20px 0px !important;
+	&::after {
+		background-position: 0px 0px !important;
+		
+		bottom: 0;
+		transition: bottom @transition-time ease;
 	}
-}
-
-.arrow.down,
-html:lang(dd) div.arrow.down,
-html.res-nightmode div.arrow.down {
-	top: 0;
-    background-position: 0px -16px !important;
-	opacity: 0.3;
 	
-    transition: top @transition-time ease;
-    
 	&:hover {
-        top: 2px;
-		background-position: -20px -16px !important;
-		opacity: 1.0;
+		background-position: -@arrow-width 0px !important;
+		
+		&::after {
+			background-position: -@arrow-width 0px !important;
+			bottom: 2px;
+		}
 	}
 }
 
-.arrow.upmod,
-html:lang(dd) div.arrow.upmod,
-html.res-nightmode div.arrow.upmod {
-	background-position: -40px 0px !important;
+.arrow.down {
+    background-position: 0px -@arrow-height !important;
+	opacity: @downvote-opacity;
+	
+	&::after {
+		background-position: 0px -@arrow-height !important;
+		
+		top: 0;
+		transition: top @transition-time ease;
+	}
+	
+	&:hover {
+		background-position: -@arrow-width -@arrow-height !important;
+		opacity: 1.0;
+		
+		&::after {
+			background-position: -@arrow-width -@arrow-height !important;
+			top: 2px;
+		}
+	}
 }
 
-.arrow.downmod,
-html:lang(dd) div.arrow.downmod,
-html.res-nightmode div.arrow.downmod {
-	background-position: -40px -16px !important;
+.arrow.upmod {
+	@x: -(@arrow-width * 2);
+	
+	background-position: @x 0px !important;
+	
+	&::after {
+		background-position: @x 0px !important;
+		bottom: 2px;
+	}
+}
+
+.arrow.downmod {
+	@x: -(@arrow-width * 2);
+	
+	background-position: @x -@arrow-height !important;
+	
+	&::after {
+		background-position: @x -@arrow-height !important;
+		top: 2px;
+	}
 }
 
 // Downvote message
@@ -245,7 +306,7 @@ html.res-nightmode div.arrow.downmod {
 
 .comment .arrow.down:hover::before {
 	visibility: visible;
-	opacity: 1;
+	opacity: 0.9;
 }
 
 // Submit page

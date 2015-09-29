@@ -39,7 +39,10 @@
 
 // Images
 @promo-img: "images/promo.png";
-@mist-img: "images/mist-2.png";
+@arrow-img: "images/arrows2 new3.png";
+
+// Fonts
+@header-font-family: "Helvetica","Arial",sans-serif;
 
 // General
 @font-family: arial,sans-serif;
@@ -50,6 +53,7 @@
 @color-gray: lighten(@color-dark-gray, 8%);
 @color-light-gray: rgb(150, 150, 150);
 @color-white: rgb(246, 246, 246);
+@color-superwhite: rgb(252, 252, 252);
 @color-black: rgb(5, 5, 5);
 
 // Background
@@ -67,6 +71,7 @@
 // Tab bar
 @tabs-bg: @color-dark-gray;
 @tabs-color: @color-light-gray;
+@tabs-selected-color: @color-white;
 
 // Content
 @content-bg: @color-white;
@@ -74,14 +79,16 @@
 
 @content-shadow-color: fade(black, 40%);
 
-@content-text-bg: rgb(252, 252, 252);
-@content-text-border: @color-light-gray;
+@content-text-bg: @color-superwhite;
+@content-text-border: @color-gray;
 
 @report-color: rgb(240, 100, 100);
 
 @moderator-color: rgb(34, 136, 34);
 @submitter-color: rgb(0, 85, 223);
 @admin-color: red;
+
+@downvote-opacity: 0.5;
 
 // Links
 @link-color: @color-blue;
@@ -111,6 +118,10 @@
 @side-header-height: 1.5em;
 
 @side-md-top-margin: @side-padding;
+
+@side-field-bg: @side-bg;
+@side-field-border: lighten(@side-field-bg, 10%);
+@side-field-color: @color-light-gray;
 
 // Submit buttons
 //@submit-bg: rgb(85, 54, 33);

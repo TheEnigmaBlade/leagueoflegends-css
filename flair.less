@@ -1,1 +1,95 @@
-*{}
+@import (reference) "style";
+
+@flair-width: 22px;
+@flair-height: 20px;
+
+@team-flair-width: 24px;
+@team-flair-height: 24px;
+
+@riot-flair-width: 30px;
+
+.flair {
+	min-width: @flair-width;
+	height: @flair-height;
+	line-height: @flair-height - 1px;
+	vertical-align: middle;
+	
+	padding: 0;
+	margin: 0 2px 0 0;
+	
+	border: none;
+	border-radius: 2px;
+	
+	font-size: 0px !important;
+	
+	overflow: hidden;
+	
+	&::before {
+		content: "";
+		display: inline-block;
+		width: @flair-width;
+		height: @flair-height;
+		
+		background-image: url(%%champion-flair%%);
+	}
+	
+	&:not([title=""]):hover {
+		padding: 0 4px;
+		
+		background-color: darken(@color-white, 2%);
+		
+		font-size: 11px !important;
+		
+		&::before {
+			display: none;
+		}
+	}
+}
+
+.flair-clear {
+	background-color: transparent;
+}
+
+.flair-team {
+	min-width: @team-flair-width;
+	height: @team-flair-height;
+	line-height: @team-flair-height - 1px;
+	
+	background-color: transparent;
+	
+	&::before {
+		width: @team-flair-width;
+		height: @team-flair-height;
+		
+		background-image: url(%%team-flair%%);
+	}
+}
+
+.flair-riot {
+	background-color: transparent;
+	
+	&::before {
+		width: @riot-flair-width;
+		
+		background-image: url(%%riot-flair%%);
+	}
+}
+
+.flair-urf {
+	&::before {
+		background-image: url(%%urf-flair%%);
+	}
+}
+
+// Test flair
+
+.flair-teemo::before { background-position: -145px -219px }
+.flair-blitzcrank::before { background-position: -217px -3px }
+.flair-sona::before { background-position: -1px -219px }
+.flair-tristana::before { background-position: -193px -219px }
+.flair-gangplank::before { background-position: -169px -51px }
+.flair-ashe::before { background-position: -169px -3px }
+.flair-tahmkench::before { background-position: -121px -291px }
+
+.flair-tsm::before { background-position: 0 0 }
+.flair-clg::before { background-position: -24px 0 }
