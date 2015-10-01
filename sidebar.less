@@ -707,6 +707,10 @@
 
 // Submit buttons
 .submit {
+	&.sidebox {
+		margin-top: -@spacer-margin-top - 6px;
+	}
+	
 	.morelink {
 		width: 132px !important;
 		
@@ -729,8 +733,6 @@
 	}
 	
 	&.submit-link {
-		margin-top: -@spacer-margin-bottom;
-		
 		padding: 8px 8px 8px 9px;
 	}
 	
@@ -748,9 +750,9 @@
 		}
 		
 		.spacer {
-			margin-top: -@spacer-margin-top;
-			margin-bottom: -@spacer-margin-bottom;
 			padding: 8px 12px;
+			
+			background-color: @tabs-bg;
 		}
 		
 		.subtitle {
@@ -761,7 +763,7 @@
 			&:after {
 				content: @submit-flood-warning;
 				font-size: 14px;
-				color: rgb(255, 20, 20);
+				color: rgb(229, 34, 34);
 				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 			}
 		}
