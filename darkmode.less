@@ -9,7 +9,7 @@
 *************************/
 
 .dark-tagline {
-	color: @color-gray;
+	color: @dark-tagline-color;
 }
 
 @{darkmode-selector}, @{nightmode-selector} {
@@ -30,6 +30,15 @@
 	#noresults {
 		background-color: @color-dark-gray;
 		color: @color-dark-gray;
+	}
+	
+	// General
+	.arrow {
+	    background-image: url(%%arrows-bot-dark%%) !important;
+		
+		&::after {
+		    background-image: url(%%arrows-top-dark%%) !important;
+		}
 	}
 	
 	// Links
@@ -90,9 +99,9 @@
 	&.res-commentBoxes.res-commentBoxes-rounded .content .thing.comment {
 		border-color: @dark-content-text-border !important;
 		
-		/*&:hover {
+		&:hover {
 			border-color: @dark-content-text-border !important;
-		}*/
+		}
 	}
 	
 	// Highlighted comment after clicking "permalink"
