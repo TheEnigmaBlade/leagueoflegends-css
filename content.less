@@ -17,8 +17,8 @@ body > .content {
 // Links
 
 .thing.link {
-	margin-bottom: @content-padding;
-	padding-bottom: @content-padding;
+	margin-bottom: @content-padding !important;
+	padding: 0 0 @content-padding 0 !important;
 	
 	border-bottom: 1px solid darken(@content-bg, 5%);
 	
@@ -35,16 +35,16 @@ body > .content {
 	
 	.title {
 		a.title {
-			color: @link-color;
+			color: @link-color !important;
 		}
 		
 		&.visited a.title,
 		a.title:visited {
-			color: @link-visited-color;
+			color: @link-visited-color !important;
 		}
 		
 		a.title:hover {
-			color: @link-hover-color;
+			color: @link-hover-color !important;
 		}
 	}
 	
@@ -75,7 +75,7 @@ body > .content {
 		
 		.title {
 			a.title {
-				color: @sticky-color;
+				color: @sticky-color  !important;
 			}
 		}
 	}
@@ -152,7 +152,7 @@ body > .content {
 		li {
 			&.reply-button a,
 			a.comments {
-				color: @color-blue;
+				color: @color-blue !important;
 			}
 		}
 	}
@@ -169,6 +169,38 @@ body > .content {
 		.admin {
 			color: @admin-color;
 		}
+	}
+}
+
+// When nothing shows up
+#noresults {
+	position: relative;
+	margin: 120px 160px 60px;
+	padding: 8px;
+	
+	@bgc: darken(@content-bg, 10%);
+	background-color: @bgc;
+	color: @bgc;
+	
+	&:before {
+		content: "";
+		display: block;
+		width: 237px;
+		height: 200px;
+		position: absolute;
+		bottom: -54px;
+		left: -142px;
+		
+		background-image: url(%%amumu%%);
+	}
+	
+	&:after {
+		content: @no-results-message;
+		position: absolute;
+		top: 8px;
+		left: 16px;
+		
+		color: rgb(255, 0, 0);
 	}
 }
 
@@ -318,5 +350,20 @@ body > .content {
 			border-color: @content-text-border;
 			border-radius: 0;
 		}
+	}
+	
+	.formtabs-content {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		
+		:nth-child(6) {
+			order: -1;
+			margin-top: 0;
+		}
+	}
+	
+	.submit_text h1 {
+		display: none;
 	}
 }

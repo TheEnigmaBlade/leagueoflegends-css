@@ -8,6 +8,8 @@
 
 @riot-flair-width: 30px;
 
+// General flair
+
 .flair {
 	min-width: @flair-width;
 	height: @flair-height;
@@ -17,6 +19,7 @@
 	padding: 0;
 	margin: 0 2px 0 0;
 	
+	background-color: transparent !important;
 	border: none;
 	border-radius: 2px;
 	
@@ -36,7 +39,7 @@
 	&:not([title=""]):hover {
 		padding: 0 4px;
 		
-		background-color: darken(@color-white, 2%);
+		background-color: darken(@color-white, 2%) !important;
 		
 		font-size: 11px !important;
 		
@@ -46,16 +49,10 @@
 	}
 }
 
-.flair-clear {
-	background-color: transparent;
-}
-
 .flair-team {
 	min-width: @team-flair-width;
 	height: @team-flair-height;
 	line-height: @team-flair-height - 1px;
-	
-	background-color: transparent;
 	
 	&::before {
 		width: @team-flair-width;
@@ -65,9 +62,22 @@
 	}
 }
 
-.flair-riot {
-	background-color: transparent;
+.flair-misc {
+	min-width: @team-flair-width;
+	height: @team-flair-height;
+	line-height: @team-flair-height - 1px;
 	
+	&::before {
+		width: @team-flair-width;
+		height: @team-flair-height;
+		
+		background-image: url(%%misc-flair%%);
+	}
+}
+
+// Specific flair
+
+.flair-riot {
 	&::before {
 		width: @riot-flair-width;
 		
@@ -76,20 +86,127 @@
 }
 
 .flair-urf {
+	min-width: @flair-width;
+	height: @flair-height;
+	line-height: @flair-height - 1px;
+	
 	&::before {
-		background-image: url(%%urf-flair%%);
+		width: @flair-width;
+		height: @flair-height;
+		
+		background-position: 0 0;
 	}
 }
 
-// Test flair
+// Team flair
+
+.make-team-flair(@name, @x, @y) {
+	@selector: ~".flair-@{name}::before";
+	@{selector} {
+		background-position: -(@x * @team-flair-width) -(@y * @team-flair-height);
+	}
+}
+
+// NA LCS
+.make-team-flair("00", 0, 0);	// TSM
+.make-team-flair("01", 1, 0);	// CLG
+.make-team-flair("02", 2, 0);	// Dignitas
+.make-team-flair("03", 3, 0);	// Team Liquid
+.make-team-flair("04", 4, 0);	// Enemy eSports
+.make-team-flair("05", 5, 0);	// Team Impulse
+.make-team-flair("06", 6, 0);	// Team 8
+.make-team-flair("07", 7, 0);	// Cloud 9
+.make-team-flair("08", 8, 0);	// Gravity
+.make-team-flair("09", 9, 0);	// Dragon Knights
+
+// EU LCS
+.make-team-flair("10", 0, 1);	// SK Gaming
+.make-team-flair("11", 1, 1);	// Fnatic
+.make-team-flair("12", 2, 1);	// Gambit Gaming
+.make-team-flair("13", 3, 1);	// GIANTS! Gaming
+.make-team-flair("14", 4, 1);	// Elements
+.make-team-flair("15", 5, 1);	// Origen Gaming
+.make-team-flair("16", 6, 1);	// Copenhagen Wolves
+.make-team-flair("17", 7, 1);	// ROCCAT
+.make-team-flair("18", 8, 1);	// H2K Gaming
+.make-team-flair("19", 9, 1);	// Unicorns of Love
+
+// LMS
+.make-team-flair("20", 0, 2);	// HK eSports
+.make-team-flair("21", 1, 2);	// Midnight Sun
+.make-team-flair("22", 2, 2);	// Machi Crew
+.make-team-flair("23", 3, 2);	// Yoe Flash Wolves
+.make-team-flair("24", 4, 2);	// Taipei Assassins
+.make-team-flair("25", 5, 2);	// Assassin Snipers
+.make-team-flair("26", 6, 2);	// AHQ eSports Club
+.make-team-flair("27", 7, 2);	// Snipers
+
+// LPL
+.make-team-flair("30", 0, 3);	// LGD Gaming
+.make-team-flair("32", 2, 3);	// Edward Gaming
+.make-team-flair("33", 3, 3);	// OMG
+.make-team-flair("34", 4, 3);	// Royal Never Give Up
+.make-team-flair("35", 5, 3);	// Invictus Gaming
+.make-team-flair("37", 6, 3);	// Team WE
+.make-team-flair("40", 7, 3);	// Vici Gaming
+.make-team-flair("41", 8, 3);	// M3 Gaming
+.make-team-flair("42", 9, 3);	// Team King
+.make-team-flair("43", 10, 3);	// Snake eSports
+.make-team-flair("44", 11, 3);	// Unlimited Potential
+.make-team-flair("45", 10, 4);	// Quao Gu
+
+// LCK
+.make-team-flair("70", 0, 4);	// Jin Air Green Wings
+.make-team-flair("71", 1, 4);	// Najin e-mFire
+.make-team-flair("72", 2, 4);	// Incredible Miracle
+.make-team-flair("73", 3, 4);	// Samsung Galaxy
+.make-team-flair("74", 4, 4);	// SKtelecom T1
+.make-team-flair("75", 5, 4);	// GE Tigers
+.make-team-flair("76", 6, 4);	// CJ Entus
+.make-team-flair("77", 7, 4);	// KT Rolster
+.make-team-flair("48", 9, 4);	// SBENU Sonicboom
+
+// GPL
+.make-team-flair("50", 0, 5);	// Bangkok Titans
+.make-team-flair("51", 1, 5);	// Saigon Fantastic Five
+.make-team-flair("52", 2, 5);	// Team Infinite
+.make-team-flair("53", 3, 5);	// Mineski
+.make-team-flair("54", 4, 5);	// Diamond
+.make-team-flair("55", 5, 5);	// Fate
+.make-team-flair("56", 6, 5);	// WarGods
+.make-team-flair("57", 7, 5);	// Ultimate
+.make-team-flair("60", 0, 6);	// Hunters
+.make-team-flair("61", 1, 6);	// Full Louis
+.make-team-flair("62", 2, 6);	// Saigon Jokers
+.make-team-flair("63", 3, 6);	// Jakarta Juggernauts
+.make-team-flair("64", 4, 6);	// Insidious Gaming Legends
+.make-team-flair("65", 5, 6);	// 269
+.make-team-flair("66", 6, 6);	// KTHXBAI
+.make-team-flair("67", 7, 6);	// Fat Rabbit
+
+// CBLoL
+.make-team-flair("80", 0, 7);	// Dexterity
+.make-team-flair("81", 1, 7);	// Keyd Stars
+.make-team-flair("82", 2, 7);	// INTZ
+.make-team-flair("83", 3, 7);	// CNB
+.make-team-flair("84", 4, 7);	// Jayob
+.make-team-flair("85", 5, 7);	// KABUM!
+.make-team-flair("86", 6, 7);	// KABUM! Black
+.make-team-flair("87", 7, 7);	// paiN
+
+// OPL
+.make-team-flair("O0", 0, 8);	// Absolute
+.make-team-flair("O1", 1, 8);	// Avant Garde
+.make-team-flair("O2", 2, 8);	// Chiefs eSports Club
+.make-team-flair("O3", 3, 8);	// Dire Wolves
+.make-team-flair("O4", 4, 8);	// Team Immunity
+.make-team-flair("O5", 5, 8);	// Legacy eSports
+.make-team-flair("O6", 6, 8);	// Sin Gaming
+.make-team-flair("O7", 7, 8);	// Sudden Fear
+
+// Test champion flair
 
 .flair-teemo::before { background-position: -145px -219px }
 .flair-blitzcrank::before { background-position: -217px -3px }
 .flair-sona::before { background-position: -1px -219px }
-.flair-tristana::before { background-position: -193px -219px }
-.flair-gangplank::before { background-position: -169px -51px }
-.flair-ashe::before { background-position: -169px -3px }
 .flair-tahmkench::before { background-position: -121px -291px }
-
-.flair-tsm::before { background-position: 0 0 }
-.flair-clg::before { background-position: -24px 0 }

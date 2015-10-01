@@ -11,6 +11,22 @@
 ****************/
 
 .md a {
+    // Champions
+    // Note: background positions piggy-back off auto-generated champion flair
+    @c-w: 22px;
+    @c-h: 20px;
+    
+    &[href^="#c-"] {
+		display: inline-block;
+		width: @c-w;
+		height: @c-h;
+		
+		background-image: url(%%champion-flair%%);
+        
+        font-size: 0;
+	}
+    
+    // Comment faces
     @face-w: 100px;
     @face-h: 101px;
     
@@ -19,6 +35,8 @@
         width: @face-w;
         height: @face-h;
         background-image: url(%%comment-faces%%);
+        
+        font-size: 0;
     }
     
     .make-face(@name, @x, @y) {
@@ -38,7 +56,7 @@
     .make-face("fiteme", 3, 1);
     
     .make-face("love", 0, 2);
-    .make-face("nope", 1, 2);
+    .make-face("yuck", 1, 2);
     .make-face("dwi", 2, 2);
     .make-face("flip", 3, 2);
     
@@ -53,12 +71,12 @@
     .make-face("yandere", 3, 4);
 
     .make-face("popcorn", 0, 5);
-    .make-face("hnng", 1, 5);
+    .make-face("happy", 1, 5);
     .make-face("fabulous", 2, 5);
     .make-face("sleepy", 3, 5);
     
-    .make-face("wind", 0, 6);
-    .make-face("high", 1, 6);
+    .make-face("whoa", 0, 6);
+    .make-face("aliens", 1, 6);
     .make-face("hmm", 2, 6);
     .make-face("crickets", 3, 6);
 }

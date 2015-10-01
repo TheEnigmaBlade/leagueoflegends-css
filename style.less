@@ -38,7 +38,7 @@
 ********/
 
 // Images
-@promo-img: "images/promo.png";
+@promo-img: "images/promo.jpg";
 @arrow-img: "images/arrows2 new3.png";
 
 // Fonts
@@ -113,11 +113,11 @@
 @side-padding: 8px;
 
 @side-header-bg: @color-dark-gray;
-@side-header-color: @color-light-gray;
+@side-header-color: lighten(@color-light-gray, 20%);
 @side-header-size: 24px;
 @side-header-height: 1.5em;
 
-@side-md-top-margin: @side-padding;
+@side-md-top-margin: @side-padding + 6px;
 
 @side-field-bg: @side-bg;
 @side-field-border: lighten(@side-field-bg, 10%);
@@ -142,7 +142,7 @@
 // Events
 @events-bg: @color-black;
 @events-bg-alt: lighten(@events-bg, 2%);
-@events-bg-hover: lighten(@events-bg, 10%);
+@events-bg-hover: lighten(@events-bg, 8%);
 
 @events-color: @color-light-gray;
 @events-link-color: @color-blue;

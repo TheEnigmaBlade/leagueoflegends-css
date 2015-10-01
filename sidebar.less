@@ -38,6 +38,19 @@
 	color: @submit-color !important;
 }
 
+.side-fancy-link() {
+	background-color: @announce-bg;
+	border: 1px solid @announce-border-color;
+	
+	&:hover {
+		background-color: @announce-bg-hover;
+	}
+}
+
+.side-fancy-link-hover-text() {
+	color: @announce-color-hover;
+}
+
 .side-dark-textfield() {
 	background-color: @side-field-bg !important;
 	border: 1px solid @side-field-border !important;
@@ -233,6 +246,11 @@
 		font-size: 11px;
 	}
 	
+	.flairselector {
+		left: unset !important;
+		right: 0 !important;
+	}
+	
 	.flairselectbtn:after {
 		content: "flair";
 		margin-left: 3px;
@@ -260,7 +278,11 @@
 	
 	// Randomly appearing sponsorship box really messes things up
 	.sponsorshipbox {
+		position: relative;
+		z-index: 3;
+		
 		margin-top: -(@spacer-margin-top + 6px);
+		//padding-bottom: 5px;
 		
 		background-color: @tabs-bg;
 	}
@@ -268,6 +290,8 @@
 	// Mod-editable markdown area
 	.md {
 		overflow: visible;
+		
+		color: @side-color;
 		
 		// Default markdown element styling
 		ul, ol {
@@ -280,6 +304,8 @@
 		}
 		
 		blockquote {
+			position: relative;
+			
 			margin: 0;
 			padding: 0;
 			
@@ -288,14 +314,35 @@
 		
 		> p {
 			text-align: center;
-			font-size: 10px;
+			
+			a {
+				.side-fancy-link();
+				
+				display: inline-block;
+				width: @side-width - @content-padding-total - 2px;
+				
+				margin: 0 @content-padding;
+				padding: (@content-padding - 2px) 0;
+				
+				transition: background-color @transition-time linear, color @transition-time linear;
+				
+				&:hover {
+					.side-fancy-link-hover-text();
+				}
+				
+				// Speicific links
+				&[href$="#rules"] {
+					margin-top: 8px;
+				}
+			}
 		}
 		
 		// Section headers
 		> h1, > h2, > h3, > h4 {
 			line-height: @side-header-height;
+			margin: @content-padding 0;
 			
-			background-color: @side-header-bg;
+			background: url(%%header-bg%%) repeat-x;
 			
 			color: @side-header-color;
 			font-family: @header-font-family;
@@ -316,24 +363,21 @@
 			list-style: none;
 			
 			li {
-				margin-bottom: 4px;
-				padding: 2px 4px 3px;
+				.side-fancy-link();
 				
-				background-color: @announce-bg;
-				border: 1px solid @announce-border-color;
+				margin-bottom: 4px;
+				padding: 5px 6px;
 				
 				transition: background-color @transition-time linear;
 				
-				&:hover {
-					background-color: @announce-bg-hover;
-					
-					a {
-						color: @announce-color-hover;
-					}
-				}
-				
 				a {
 					transition: color @transition-time linear;
+				}
+				
+				&:hover {
+					a {
+						.side-fancy-link-hover-text();
+					}
 				}
 			}
 		}
@@ -342,25 +386,23 @@
 		h3 + blockquote {
 			&:extend(.side .md-section);
 			
-			// Buttons
 			p {
 				text-align: center;
 				
+				// Nightmode message
 				a {
+					color: @color-dark-gray !important;
+				}
+				
+				// Buttons
+				&:first-child a {
 					display: inline-block;
 					width: 80px;
 					height: 80px;
 					
 					margin: 0 20px;
 					
-					//border: 1px solid black;
-					//outline: 1px solid @side-border;
-					
 					background-image: url(%%theme-buttons%%);
-					
-					text-shadow: none;
-					
-					//transition: border-color @transition-time ease, box-shadow @transition-time ease;
 					
 					&:hover {
 						//border-color: rgb(200, 200, 200);
@@ -379,11 +421,6 @@
 						background-position: -80px 0;
 					}
 				}
-			}
-			
-			// Nightmode message
-			+ p a {
-				color: rgb(60, 60, 60) !important;
 			}
 		}
 		
@@ -427,102 +464,95 @@
 		}
 		
 		// Main menu
-		h5 + blockquote {
+		/*h5 + blockquote {
 			display: none;
-		}
+		}*/
 	}
 	
 	// Promo image
 	a[href$="#promo"] {
 		@promo-height: image-height(@promo-img);
+		@promo-offset-base: @promo-height + @side-md-top-margin;	// 194px
 		
 		width: 300px;
 		height: @promo-height;
 		
 		position: absolute;
-		top: -@promo-height - 81px;
+		top: -(@promo-offset-base + 73px);
 		left: 0;
 		
 		background-image: url(%%promo%%);
 		.side-sandwich-border();
 		
-		opacity: 0.9;
+		opacity: 0.85;
 		transition: opacity @transition-time linear;
 		
 		&:hover {
 			opacity: 1;
 		}
 		
-		@promo-offset-base: @promo-height + @side-md-top-margin;
-		
 		// Position adjustments based on login and RES states
 		//TODO
 		.res & {
-			top: -@promo-offset-base - 119px;
+			top: -(@promo-offset-base + 93px);
 		}
 		
 		.loggedin & {
-			top: -@promo-offset-base - 124px;
+			top: -(@promo-offset-base + 108px);
 		}
 		
 		.loggedin.res & {
-			top: -@promo-offset-base - 134px;
+			top: -(@promo-offset-base + 128px);
 		}
 		
 		.contributor & {
-			top: -@promo-offset-base - 147px;
+			top: -(@promo-offset-base + 142px);
 		}
 		
 		.contributor.res & {
-			top: -@promo-offset-base - 186px;
+			top: -(@promo-offset-base + 162px);
 		}
 		
-		//TODO
 		.moderator & {
-			top: -@promo-offset-base - 187px;
+			top: -(@promo-offset-base + 207px);
 		}
 		
 		.moderator.res & {
-			top: -@promo-offset-base - 233px;
+			top: -(@promo-offset-base + 227px);
 		}
 		
 		// Dammit, Chrome. Why is your text rendering so bad?
-		//TODO
 		@media screen and (-webkit-min-device-pixel-ratio:0) {
-			top: -@promo-offset-base - 77px;
+			top: -(@promo-offset-base + 70px);
 			
 			.res & {
-				top: -@promo-offset-base - 97px;
+				top: -(@promo-offset-base + 90px);
 			}
 			
 			.loggedin & {
-				top: -@promo-offset-base - 132px;
+				top: -(@promo-offset-base + 105px);
 			}
 			
 			.loggedin.res & {
-				top: -@promo-offset-base - 132px;
+				top: -(@promo-offset-base + 125px);
 			}
 			
 			.contributor & {
-				top: -@promo-offset-base - 152px;
+				top: -(@promo-offset-base + 139px);
 			}
 			
 			.contributor.res & {
-				top: -@promo-offset-base - 152px;
+				top: -(@promo-offset-base + 159px);
 			}
 			
 			.moderator & {
-				top: -@promo-offset-base - 183px;
+				top: -(@promo-offset-base + 204px);
 			}
 			
 			.moderator.res & {
-				top: -@promo-offset-base - 103px;
+				top: -(@promo-offset-base + 224px);
 			}
 		}
-	}
-	
-	.md p:first-of-type {
-		position: relative;
 	}
 	
 	// Hide the "who made it/age" section
@@ -588,15 +618,15 @@
 
 // Login
 .login-form-side {
-	position: absolute;
-	top: @srbar-height + @header-height - @content-padding - 70px;
-	z-index: 9001;
+	position: relative;		// To cover lock
+	z-index: 3;
 	
-	background-color: @tabs-bg;
+	margin-top: -@spacer-margin-top - 6px;
+	
+	background-color: @tabs-bg !important;
 	border: none;
-	box-shadow: 0 0 3px 0 fade(@color-black, 75%);
 	
-	color: @side-color;
+	color: @side-color !important;
 	
 	input {
 		.side-dark-textfield();

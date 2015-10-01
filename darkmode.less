@@ -8,9 +8,35 @@
 * Darkmode and nightmode *
 *************************/
 
+.dark-tagline {
+	color: @color-gray;
+}
+
 @{darkmode-selector}, @{nightmode-selector} {
 	body > .content {
 		background-color: @dark-content-bg;
+		border-right: 1px solid @tabs-bg;
+	}
+	
+	.content .md {
+		color: @dark-content-text-color;
+		
+		code {
+			background-color: @color-black;
+			border-color: @dark-content-text-border;
+		}
+	}
+	
+	#noresults {
+		background-color: @color-dark-gray;
+		color: @color-dark-gray;
+	}
+	
+	// Links
+	.entry .tagline,
+	.entry .buttons li a,
+	.entry time {
+		&:extend(.dark-tagline);
 	}
 	
 	.thing.link {
@@ -22,8 +48,23 @@
 				border-color: @dark-content-text-border;
 			}
 		}
+		
+		&.stickied {
+			.title {
+				a.title {
+					color: @dark-sticky-color  !important;
+				}
+			}
+		}
+		
+		.stickied-tagline {
+			color: @dark-sticky-color;
+		}
+		
+		.domain a:extend(.dark-tagline) {}
 	}
 	
+	// Comments
 	.comments-page .commentarea {
 		.generate-comment-bgs(11);
 		.generate-comment-bgs(@max-i; @i: 1) when (@i <= @max-i) {
@@ -36,6 +77,20 @@
 				.generate-comment-bgs(@max-i; @i + 1);
 			}
 		}
+		
+		textarea {
+			background-color: @color-black;
+			border-color: @color-dark-gray;
+		}
+	}
+	
+	.thing.comment,
+	&.res-commentBoxes.res-commentBoxes-rounded .content .thing.comment {
+		border-color: @dark-content-text-border !important;
+		
+		/*&:hover {
+			border-color: @dark-content-text-border !important;
+		}*/
 	}
 }
 
@@ -74,6 +129,12 @@
 	
 	h1 {
 		border: none;
+	}
+	
+	.side {
+		blockquote {
+			background: none;
+		}
 	}
 }
 
