@@ -276,6 +276,74 @@
 		margin-right: @side-padding;
 	}
 	
+	// Search
+	#search {
+		position: relative;
+		
+		z-index: 9000;
+		
+		margin: -@spacer-margin-top @search-padding 0 0;
+		
+		input[type="submit"] {
+			z-index: 3;
+			
+			margin-left: -28px;
+			
+			background-image: url(%%sprite-reddit%%) !important;
+			background-position: -20px -838px !important;
+			background-color: transparent !important;
+		}
+		
+		input[type="text"] {
+			.side-dark-textfield();
+			
+			width: @search-width;
+			height: @search-height;
+			
+			position: relative;
+			z-index: 2;
+			
+			margin: @search-padding;
+			padding: 3px 0px;
+			
+			font-size: 16px;
+			text-indent: 6px;
+			
+			&:focus {
+				border-bottom-style: none !important;
+			}
+		}
+	}
+	
+	#searchexpando {
+		width: @search-width - 20px - 2px;
+		
+		position: absolute;
+		top: @search-height;
+		left: 6px;
+		z-index: 1;
+		
+		background-color: @side-field-bg;
+		border-color: @side-field-border !important;
+		border-radius: 0;
+		
+		transition: border-color @transition-time ease;
+		
+		#search input[type="text"]:focus ~ & {
+			border-color: @color-blue !important;
+		}
+		
+		label {
+			color: @color-light-gray;
+		}
+		
+		p {
+			margin: 6px 0 4px 0px;
+			
+			font-size: smaller;
+		}
+	}
+	
 	// Randomly appearing sponsorship box really messes things up
 	.sponsorshipbox {
 		position: relative;
@@ -546,11 +614,11 @@
 			}
 			
 			.moderator & {
-				top: -(@promo-offset-base + 204px);
+				top: -(@promo-offset-base + 170px);
 			}
 			
 			.moderator.res & {
-				top: -(@promo-offset-base + 224px);
+				top: -(@promo-offset-base + 190px);
 			}
 		}
 	}
@@ -634,74 +702,6 @@
 	
 	button {
 		padding: 0 6px;
-	}
-}
-
-// Search
-#search {
-	position: relative;
-	
-	z-index: 9000;
-	
-	margin: -@spacer-margin-top @search-padding 0 0;
-	
-	input[type="submit"] {
-		z-index: 3;
-		
-		margin-left: -28px;
-		
-		background-image: url(%%sprite-reddit%%) !important;
-		background-position: -20px -838px !important;
-		background-color: transparent !important;
-	}
-	
-	input[type="text"] {
-		.side-dark-textfield();
-		
-		width: @search-width;
-		height: @search-height;
-		
-		position: relative;
-		z-index: 2;
-		
-		margin: @search-padding;
-		padding: 3px 0px;
-		
-		font-size: 16px;
-		text-indent: 6px;
-		
-		&:focus {
-			border-bottom-style: none !important;
-		}
-	}
-}
-
-#searchexpando {
-	width: @search-width - 20px - 2px;
-	
-	position: absolute;
-	top: @search-height;
-	left: 6px;
-	z-index: 1;
-	
-	background-color: @side-field-bg;
-	border-color: @side-field-border !important;
-	border-radius: 0;
-	
-	transition: border-color @transition-time ease;
-	
-	#search input[type="text"]:focus ~ & {
-		border-color: @color-blue !important;
-	}
-	
-	label {
-		color: @color-light-gray;
-	}
-	
-	p {
-		margin: 6px 0 4px 0px;
-		
-		font-size: smaller;
 	}
 }
 
