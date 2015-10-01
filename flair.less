@@ -98,12 +98,34 @@
 	}
 }
 
+.flair-team-soraka {
+	@w: 48px;
+	@h: 24px;
+	min-width: @w;
+	height: @h;
+	line-height: @h - 1px;
+	
+	&::before {
+		width: @w;
+		height: @h;
+		
+		background-image: url(%%team-soraka-flair%%);
+	}
+}
+
 // Team flair
 
-.make-team-flair(@name, @x, @y) {
+.make-team-flair(@name, @x, @y, @slots: 1) {
 	@selector: ~".flair-@{name}::before";
 	@{selector} {
 		background-position: -(@x * @team-flair-width) -(@y * @team-flair-height);
+		& when (@slots > 1) {
+			min-width: @team-flair-width * @slots;
+			
+			&::before {
+				width: @team-flair-width * @slots;
+			}
+		}
 	}
 }
 
@@ -139,10 +161,10 @@
 .make-team-flair("24", 4, 2);	// Taipei Assassins
 .make-team-flair("25", 5, 2);	// Assassin Snipers
 .make-team-flair("26", 6, 2);	// AHQ eSports Club
-.make-team-flair("27", 7, 2);	// Snipers
+.make-team-flair("27", 7, 2, 2);	// Snipers
 
 // LPL
-.make-team-flair("30", 0, 3);	// LGD Gaming
+.make-team-flair("30", 0, 3, 2);	// LGD Gaming
 .make-team-flair("32", 2, 3);	// Edward Gaming
 .make-team-flair("33", 3, 3);	// OMG
 .make-team-flair("34", 4, 3);	// Royal Never Give Up
@@ -153,7 +175,7 @@
 .make-team-flair("42", 9, 3);	// Team King
 .make-team-flair("43", 10, 3);	// Snake eSports
 .make-team-flair("44", 11, 3);	// Unlimited Potential
-.make-team-flair("45", 10, 4);	// Quao Gu
+.make-team-flair("45", 10, 4, 2);	// Quao Gu
 
 // LCK
 .make-team-flair("70", 0, 4);	// Jin Air Green Wings
@@ -163,7 +185,7 @@
 .make-team-flair("74", 4, 4);	// SKtelecom T1
 .make-team-flair("75", 5, 4);	// GE Tigers
 .make-team-flair("76", 6, 4);	// CJ Entus
-.make-team-flair("77", 7, 4);	// KT Rolster
+.make-team-flair("77", 7, 4, 2);	// KT Rolster
 .make-team-flair("48", 9, 4);	// SBENU Sonicboom
 
 // GPL
@@ -192,7 +214,7 @@
 .make-team-flair("84", 4, 7);	// Jayob
 .make-team-flair("85", 5, 7);	// KABUM!
 .make-team-flair("86", 6, 7);	// KABUM! Black
-.make-team-flair("87", 7, 7);	// paiN
+.make-team-flair("87", 7, 7, 2);	// paiN
 
 // OPL
 .make-team-flair("O0", 0, 8);	// Absolute
