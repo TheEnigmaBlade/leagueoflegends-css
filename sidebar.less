@@ -66,6 +66,8 @@
 
 // Subreddit info
 .linkinfo {
+	@info-size: 14px;
+	
 	position: relative;		// For z-index
 	z-index: 3;
 	
@@ -77,30 +79,32 @@
 	border-radius: 0;
 	
 	text-align: center;
-	color: @color-light-gray;
-	font-size: 14px;
+	font-size: @info-size;
+	
+	// RES makes this too complicated
+	* {
+		color: @side-color !important;
+	}
 	
 	.date {
-		margin-bottom: @side-padding;
+		margin-bottom: @side-padding !important;
 	}
 	
-	.score {
-		.number, .word {
-			color: @color-white;
-		}
+	.score * {
+		color: @side-highlight-color !important;
 	}
 	
-	.totalvotes {
-		span {
-			font-size: 14px;
-		}
+	.totalvotes * {
+		font-size: @info-size;
 	}
 	
-	.upvotes:extend(.linkinfo .totalvotes all) {
+	.upvotes * {
+		font-size: @info-size;
 		color: rgb(205, 69, 0) !important;
 	}
 	
-	.downvotes:extend(.linkinfo .totalvotes all) {
+	.downvotes * {
+		font-size: @info-size;
 		color: rgb(95, 153, 207) !important;
 	}
 	
@@ -122,8 +126,9 @@
 	margin-top: 190px;
 	padding: 0 @side-padding @side-padding;
 	
-	color: @color-white;
-		
+	color: @side-highlight-color;
+	
+	// Hide subreddit name
 	.redditname {
 		display: none;
 	}
@@ -215,35 +220,28 @@
 		background: none;
 		
 		font-size: 11px;
+		color: @side-color !important;
 	}
 	
-	form.sr_style_toggle,
-	form.flairtoggle {
+	form.toggle {
+		height: 17px;
 		vertical-align: middle;
-		padding-top: 2px;
 		
 		background: none;
 		
-		label:extend(.titlebox .leavemoderator), input {
+		label:extend(.titlebox .leavemoderator),
+		input:extend(.titlebox .leavemoderator) {
 			margin-top: 0;
 			vertical-align: middle;
 		}
 	}
 	
-	form.sr_style_toggle {
-		height: 16px;
-		margin-top: 8px;
-	}
-	
-	form.flairtoggle {
-		height: 18px;
-		font-size: 10px;
-	}
-	
 	.tagline {
 		height: 12px;
-		margin: 0 0 0 20px;
-		font-size: 11px;
+		margin: @spacer-margin-top 0 0 20px;
+		
+		font-size: 12px;
+		color: @side-color !important;
 	}
 	
 	.flairselector {
@@ -329,10 +327,6 @@
 		
 		transition: border-color @transition-time ease;
 		
-		#search input[type="text"]:focus ~ & {
-			border-color: @color-blue !important;
-		}
-		
 		label {
 			color: @color-light-gray;
 		}
@@ -342,6 +336,10 @@
 			
 			font-size: smaller;
 		}
+	}
+	
+	#search input[type="text"]:focus ~ #searchexpando {
+		border-color: @color-blue !important;
 	}
 	
 	// Randomly appearing sponsorship box really messes things up
