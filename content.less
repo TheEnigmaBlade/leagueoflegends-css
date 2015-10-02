@@ -239,35 +239,35 @@ body > .content {
 .arrow {
 	width: @arrow-width;
 	height: @arrow-height;
-    position: relative;
-    
-    background-image: url(%%arrows-bot%%) !important;
+	position: relative;
+	
+	background-image: url(%%arrows-bot%%) !important;
 	
 	&::after {
 		content: "";
 		width: @arrow-width;
 		height: @arrow-height;
-	    position: absolute;
-	    
-	    background-image: url(%%arrows-top%%) !important;
+		position: absolute;
+		
+		background-image: url(%%arrows-top%%) !important;
 	}
 }
 
 .arrow.up {
-    background-position: 0px 0px !important;
+	background-position: 0 0 !important;
 	
 	&::after {
-		background-position: 0px 0px !important;
+		background-position: 0 0 !important;
 		
 		bottom: 0;
 		transition: bottom @transition-time ease;
 	}
 	
 	&:hover {
-		background-position: -@arrow-width 0px !important;
+		background-position: -@arrow-width 0 !important;
 		
 		&::after {
-			background-position: -@arrow-width 0px !important;
+			background-position: -@arrow-width 0 !important;
 			bottom: 2px;
 		}
 	}
@@ -276,11 +276,11 @@ body > .content {
 .arrow.down {
 	margin-bottom: 2px;
 	
-    background-position: 0px -@arrow-height !important;
+	background-position: 0 -@arrow-height !important;
 	opacity: @downvote-opacity;
 	
 	&::after {
-		background-position: 0px -@arrow-height !important;
+		background-position: 0 -@arrow-height !important;
 		
 		top: 0;
 		transition: top @transition-time ease;
@@ -300,10 +300,10 @@ body > .content {
 .arrow.upmod {
 	@x: -(@arrow-width * 2);
 	
-	background-position: @x 0px !important;
+	background-position: @x 0 !important;
 	
 	&::after {
-		background-position: @x 0px !important;
+		background-position: @x 0 !important;
 		bottom: 2px;
 	}
 }
