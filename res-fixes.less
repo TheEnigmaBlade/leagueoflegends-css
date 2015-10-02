@@ -26,3 +26,10 @@ html.res-commentBoxes body > .content {
 	width: 100%;
 	margin-bottom: -@content-padding;
 }
+
+// fixes the arrows from RES from showing up issue #11
+.res-nightmode .arrow.up:hover, .res-nightmode .arrow.up,
+.res-nightmode .arrow.down, .res-nightmode .arrow.down:hover {
+    background: none !important;
+}
+
