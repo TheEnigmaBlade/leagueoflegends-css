@@ -21,9 +21,18 @@
 	.content .md {
 		color: @dark-content-text-color;
 		
+		h1 {
+			color: @color-white;
+		}
+		
+		h2 {
+			color: @color-light-gray;
+		}
+		
 		code {
 			background-color: @color-black;
 			border-color: @dark-content-text-border;
+			color: @color-light-gray;
 		}
 	}
 	
@@ -93,6 +102,11 @@
 			
 			color: @dark-comment-input-color;
 		}
+		
+		.panestack-title {
+			border-color: @color-dark-gray;
+			color: @color-gray;
+		}
 	}
 	
 	.thing.comment,
@@ -104,9 +118,24 @@
 		}
 	}
 	
+	.comment {
+		span.score {
+			color: @color-light-gray;
+		}
+	}
+	
 	// Highlighted comment after clicking "permalink"
 	.usertext.border .usertext-body {
 		background-color: lighten(@dark-content-text-bg, 5%);
+	}
+	
+	.submit-page {
+		.submit {
+			.roundfield {
+				background-color: @dark-content-text-bg;
+				border-color: @dark-content-text-border;
+			}
+		}
 	}
 }
 
@@ -148,6 +177,10 @@
 	}
 	
 	.side {
+		* {
+			color: inherit;
+		}
+		
 		blockquote {
 			background: none;
 		}
@@ -159,4 +192,7 @@
 // .side: border-right, border-bottom
 // .side-dark-textfield(): background-color
 // #searchexpando: border-color
-// .linkinfo
+// .linkinfo (and all its subelement colors)
+// .titlebox
+//   .leavemoderator
+//   .tagline
