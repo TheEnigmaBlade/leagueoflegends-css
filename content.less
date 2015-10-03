@@ -374,17 +374,24 @@ body > .content {
 
 .submit-page {
 	.submit {
+		.spacer {
+			margin: 0;
+		}
+		
 		.roundfield {
+			margin: (@content-padding / 2) 0;
+			
 			background-color: @content-text-bg;
-			border-color: @content-text-border;
+			border: 1px solid @content-text-border;
 			border-radius: 0;
 		}
 	}
 	
 	.formtabs-content {
 		display: flex;
-		flex-direction: column;
-		flex-wrap: nowrap;
+		flex-flow: column nowrap;
+		
+		border-top: 2px solid @color-gray !important;
 		
 		:nth-child(6) {
 			order: -1;

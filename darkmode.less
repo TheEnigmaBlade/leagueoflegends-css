@@ -1,4 +1,5 @@
 @import (reference) "style-darkmode";
+@import (reference) "sidebar";
 
 // Variables
 @darkmode-selector: ~"html:lang(dd)";
@@ -134,11 +135,20 @@
 	}
 	
 	.submit-page {
-		.submit {
-			.roundfield {
-				background-color: @dark-content-text-bg;
-				border-color: @dark-content-text-border;
-			}
+		.content h1 {
+			color: @dark-content-header-color;
+		}
+		
+		.submit .roundfield {
+			background-color: @dark-content-text-bg;
+			border-color: @dark-content-text-border;
+			
+			color: @dark-content-text-color;
+		}
+		
+		textarea,
+		input[type="text"] {
+			.side-dark-textfield();
 		}
 	}
 }
@@ -164,7 +174,6 @@
 	#header-bottom-left,
 	:not([class*="-page"]) .content[role="main"],
 	.listing-page .link,
-	.submit-page .content,
 	.icon-menu a,
 	.side blockquote ul,
 	.side .leavemoderator,
@@ -172,7 +181,8 @@
 	.sidebox,
 	.sidecontentbox .content,
 	.titlebox,
-	.titlebox form.flairtoggle {
+	.titlebox form.flairtoggle,
+	#newlink {
 		.nightmode-bg-fix();
 	}
 	
