@@ -126,14 +126,19 @@
 // Team flair
 
 .make-team-flair(@name, @x, @y, @slots: 1) {
-	@selector: ~".flair-@{name}::before";
+	@selector: ~".flair-@{name}";
 	@{selector} {
-		background-position: -(@x * @team-flair-width) -(@y * @team-flair-height);
+		& when (@slots = 1) {
+			&::before {
+				background-position: -(@x * @team-flair-width) -(@y * @team-flair-height);
+			}
+		}
 		& when (@slots > 1) {
 			min-width: @team-flair-width * @slots;
 			
 			&::before {
 				width: @team-flair-width * @slots;
+				background-position: -(@x * @team-flair-width) -(@y * @team-flair-height);
 			}
 		}
 	}

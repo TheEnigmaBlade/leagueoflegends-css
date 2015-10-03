@@ -1,0 +1,20 @@
+@import (reference) "darkmode";
+
+.make-team-flair-dark(@name) {
+	@selector: ~".flair-@{name}";
+	@{selector} {
+		&::before {
+			background-color: @color-white;
+		}
+	}
+}
+
+@{darkmode-selector}, @{nightmode-selector} {
+	.make-team-flair-dark("00");	// TSM
+	.make-team-flair-dark("01");	// CLG
+	.make-team-flair-dark("09");	// Dragon Knights
+	.make-team-flair-dark("10");	// SK Gaming
+	.make-team-flair-dark("21");	// Midnight Sun
+	.make-team-flair-dark("35");	// Invictus Gaming
+	.make-team-flair-dark("45");	// Quao Gu
+}
