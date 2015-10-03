@@ -1,8 +1,14 @@
+/*!
+* Hello!
+* This theme was compiled from LESS. You can find that version here:
+* https://github.com/TheEnigmaBlade/leagueoflegends-CSS
+*/
+
 @import (reference) "style";
 
-/*******
-* Page *
-*******/
+//*******
+// Page *
+//*******
 
 html {
 	overflow-x: hidden;
@@ -76,9 +82,9 @@ textarea {
 	text-decoration: none !important;
 }
 
-/***************
-* Page content *
-***************/
+//***************
+// Page content *
+//***************
 
 @import "header";
 @import "content";
@@ -95,9 +101,34 @@ textarea {
 	border-radius: 0;
 }
 
-/***********
-* Includes *
-***********/
+//********
+// Modes *
+//********
+
+/*html:lang(sf),
+html:lang(sd) {
+	.thing.link.over18 {
+		.midcol,
+		.thumbnail,
+		.entry {
+			display: none;
+		}
+		
+		&::before {
+			content: @spoilers-message;
+			
+			margin-left: @content-padding;
+			
+			color: darken(red, 10%);
+			font-size: 14px;
+			font-style: italic;
+		}
+	}
+}*/
+
+//***********
+// Includes *
+//***********
 
 @import "markdown";
 @import "mod";
@@ -107,4 +138,4 @@ textarea {
 @import "flair";
 @import "animations";
 
-/*# AUTO-GENERATED AFTER THIS POINT - DO NOT EDIT #*/
+/*! AUTO-GENERATED AFTER THIS POINT - DO NOT EDIT */

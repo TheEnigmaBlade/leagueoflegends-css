@@ -32,10 +32,10 @@ body > .content {
 			background-position: center;
 		}
 		
-		&.nsfw {
+		/*&.nsfw {
 			background-image: url(%%spoiler-thumbnail%%);
 			background-position: center;
-		}
+		}*/
 	}
 	
 	.title {
@@ -66,7 +66,7 @@ body > .content {
 	}
 	
 	// Convert NSFW into SPOILER
-	.nsfw-stamp {
+	/*.nsfw-stamp {
 		vertical-align: middle;
 		
 		acronym {
@@ -79,7 +79,7 @@ body > .content {
 				font-size: 10px;
 			}
 		}
-	}
+	}*/
 	
 	// Self posts
 	&.self {
@@ -259,86 +259,88 @@ body > .content {
 @arrow-width: image-width(@arrow-img) / 3;
 @arrow-height: image-height(@arrow-img) / 2;
 
-.arrow {
-	width: @arrow-width;
-	height: @arrow-height;
-	position: relative;
-	
-	background-image: url(%%arrows-bot%%) !important;
-	
-	&::after {
-		content: "";
+.midcol {
+	.arrow {
 		width: @arrow-width;
 		height: @arrow-height;
-		position: absolute;
+		position: relative;
 		
-		background-image: url(%%arrows-top%%) !important;
-	}
-}
-
-.arrow.up {
-	background-position: 0 0 !important;
-	
-	&::after {
-		background-position: 0 0 !important;
-		
-		bottom: 0;
-		transition: bottom @transition-time ease;
-	}
-	
-	&:hover {
-		background-position: -@arrow-width 0 !important;
+		background-image: url(%%arrows-bot%%) !important;
 		
 		&::after {
+			content: "";
+			width: @arrow-width;
+			height: @arrow-height;
+			position: absolute;
+			
+			background-image: url(%%arrows-top%%) !important;
+		}
+	}
+
+	.arrow.up {
+		background-position: 0 0 !important;
+		
+		&::after {
+			background-position: 0 0 !important;
+			
+			bottom: 0;
+			transition: bottom @transition-time ease;
+		}
+		
+		&:hover {
 			background-position: -@arrow-width 0 !important;
+			
+			&::after {
+				background-position: -@arrow-width 0 !important;
+				bottom: 2px;
+			}
+		}
+	}
+
+	.arrow.down {
+		margin-bottom: 2px;
+		
+		background-position: 0 -@arrow-height !important;
+		opacity: @downvote-opacity;
+		
+		&::after {
+			background-position: 0 -@arrow-height !important;
+			
+			top: 0;
+			transition: top @transition-time ease;
+		}
+		
+		&:hover {
+			background-position: -@arrow-width -@arrow-height !important;
+			opacity: 1.0;
+			
+			&::after {
+				background-position: -@arrow-width -@arrow-height !important;
+				top: 2px;
+			}
+		}
+	}
+
+	.arrow.upmod {
+		@x: -(@arrow-width * 2);
+		
+		background-position: @x 0 !important;
+		
+		&::after {
+			background-position: @x 0 !important;
 			bottom: 2px;
 		}
 	}
-}
 
-.arrow.down {
-	margin-bottom: 2px;
-	
-	background-position: 0 -@arrow-height !important;
-	opacity: @downvote-opacity;
-	
-	&::after {
-		background-position: 0 -@arrow-height !important;
+	.arrow.downmod {
+		@x: -(@arrow-width * 2);
 		
-		top: 0;
-		transition: top @transition-time ease;
-	}
-	
-	&:hover {
-		background-position: -@arrow-width -@arrow-height !important;
-		opacity: 1.0;
+		background-position: @x -@arrow-height !important;
 		
 		&::after {
-			background-position: -@arrow-width -@arrow-height !important;
+			background-position: @x -@arrow-height !important;
 			top: 2px;
 		}
-	}
-}
-
-.arrow.upmod {
-	@x: -(@arrow-width * 2);
-	
-	background-position: @x 0 !important;
-	
-	&::after {
-		background-position: @x 0 !important;
-		bottom: 2px;
-	}
-}
-
-.arrow.downmod {
-	@x: -(@arrow-width * 2);
-	
-	background-position: @x -@arrow-height !important;
-	
-	&::after {
-		background-position: @x -@arrow-height !important;
-		top: 2px;
 	}
 }
 

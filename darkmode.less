@@ -1,13 +1,15 @@
 @import (reference) "style-darkmode";
 @import (reference) "sidebar";
+@import (reference) "content";
 
 // Variables
 @darkmode-selector: ~"html:lang(dd)";
+//@darkmode-selector: ~"html[lang$='d']";
 @nightmode-selector: ~"html.res-nightmode";
 
-/*************************
-* Darkmode and nightmode *
-*************************/
+//*************************
+// Darkmode and nightmode *
+//*************************
 
 .dark-tagline {
 	color: @dark-tagline-color;
@@ -64,6 +66,12 @@
 	
 	.thing.link {
 		border-color: darken(@dark-content-bg, 20%);
+		
+		/*.thumbnail {
+			&.nsfw {
+				background-image: url(%%spoiler-thumbnail-dark%%);
+			}
+		}*/
 		
 		&.self {
 			.expando .md {
@@ -124,6 +132,8 @@
 	}
 	
 	.comment {
+		&:extend(.dark-comment);
+		
 		span.score {
 			color: @color-light-gray;
 		}
@@ -160,9 +170,9 @@
 	background-color: @dark-comment-lvl2-bg !important;
 }
 
-/****************
-* RES nightmode *
-****************/
+//****************
+// RES nightmode *
+//****************
 
 .nightmode-bg-fix() {
 	background-color: transparent !important;
@@ -172,7 +182,7 @@
 	ol,
 	#header,
 	#header-bottom-left,
-	:not([class*="-page"]) .content[role="main"],
+	//:not([class*="-page"]) .content[role="main"],
 	.listing-page .link,
 	.icon-menu a,
 	.side blockquote ul,
@@ -207,10 +217,10 @@
 		background-image: url(%%arrows-bot-dark%%) !important;
 	}
 	
-	.arrow.up:extend(.arrow.up all) {}
-	.arrow.down:extend(.arrow.down all) {}
-	.arrow.upmod:extend(.arrow.upmod all) {}
-	.arrow.downmod:extend(.arrow.downmod all) {}
+	.arrow.up:extend(.midcol .arrow.up all) {}
+	.arrow.down:extend(.midcol .arrow.down all) {}
+	.arrow.upmod:extend(.midcol .arrow.upmod all) {}
+	.arrow.downmod:extend(.midcol .arrow.downmod all) {}
 }
 
 // Importants applied:
