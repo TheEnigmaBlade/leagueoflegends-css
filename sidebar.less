@@ -186,7 +186,7 @@
 		.side-fancy-button-bg();
 		.side-fancy-button-text();
 		
-		padding: 0 8px;
+		padding: 0 3px;
 		
 		font-size: 12px;
 		
@@ -213,32 +213,30 @@
 	}
 	
 	// Button options
-	.leavemoderator,
-	form.leavecontributor-button {
-		height: 24px;
+	form.toggle {
+		height: 18px;
+		vertical-align: middle;
 		
 		background: none;
 		
 		font-size: 11px;
 		color: @side-color !important;
-	}
-	
-	form.toggle {
-		height: 17px;
-		vertical-align: middle;
 		
-		background: none;
-		
-		label:extend(.titlebox .leavemoderator),
-		input:extend(.titlebox .leavemoderator) {
+		label,
+		input {
 			margin-top: 0;
 			vertical-align: middle;
 		}
 	}
 	
+	.leavemoderator:extend(.titlebox form.toggle),
+	form.leavecontributor-button {
+		height: 24px;
+	}
+	
 	.tagline {
 		height: 12px;
-		margin: @spacer-margin-top 0 0 20px;
+		margin: 2px 0 0 20px;
 		
 		font-size: 12px;
 		color: @side-color !important;
@@ -544,7 +542,6 @@
 		height: @promo-height;
 		
 		position: absolute;
-		top: -(@promo-offset-base + 73px);
 		left: 0;
 		
 		background-image: url(%%promo%%);
@@ -558,65 +555,94 @@
 		}
 		
 		// Position adjustments based on login and RES states
-		//TODO
+		// This should *really* be done a different way.
+		@res-add: 20px;
+		@gold-add: 28px;
+		@chrome-add: -3px;
+		
+		@top: 73px;
+		@loggedin: 108px;
+		@contributor: 142px;
+		@moderator: 170px;
+		
+		top: -(@promo-offset-base + @top);
+		
 		.res & {
-			top: -(@promo-offset-base + 93px);
+			top: -(@promo-offset-base + @top + @res-add);
 		}
 		
 		.loggedin & {
-			top: -(@promo-offset-base + 108px);
+			top: -(@promo-offset-base + @loggedin);
 		}
-		
 		.loggedin.res & {
-			top: -(@promo-offset-base + 128px);
+			top: -(@promo-offset-base + @loggedin + @res-add);
+		}
+		.loggedin.gold & {
+			top: -(@promo-offset-base + @loggedin + @gold-add);
+		}
+		.loggedin.res.gold & {
+			top: -(@promo-offset-base + @loggedin + @res-add + @gold-add);
 		}
 		
 		.contributor & {
-			top: -(@promo-offset-base + 142px);
+			top: -(@promo-offset-base + @contributor);
 		}
-		
 		.contributor.res & {
-			top: -(@promo-offset-base + 162px);
+			top: -(@promo-offset-base + @contributor + @res-add);
+		}
+		.contributor.gold & {
+			top: -(@promo-offset-base + @contributor + @gold-add);
+		}
+		.contributor.res.gold & {
+			top: -(@promo-offset-base + @contributor + @res-add + @gold-add);
 		}
 		
 		.moderator & {
-			top: -(@promo-offset-base + 176px);
+			top: -(@promo-offset-base + @moderator) !important;
 		}
-		
 		.moderator.res & {
-			top: -(@promo-offset-base + 193px);
+			top: -(@promo-offset-base + @moderator + @res-add) !important;
 		}
 		
 		// Dammit, Chrome. Why is your text rendering so bad?
 		@media screen and (-webkit-min-device-pixel-ratio:0) {
-			top: -(@promo-offset-base + 70px);
+			top: -(@promo-offset-base + @chrome-add + @top);
 			
 			.res & {
-				top: -(@promo-offset-base + 90px);
+				top: -(@promo-offset-base + @chrome-add + @top + @res-add);
 			}
 			
 			.loggedin & {
-				top: -(@promo-offset-base + 105px);
+				top: -(@promo-offset-base + @chrome-add + @loggedin);
 			}
-			
 			.loggedin.res & {
-				top: -(@promo-offset-base + 125px);
+				top: -(@promo-offset-base + @chrome-add + @loggedin + @res-add);
+			}
+			.loggedin.gold & {
+				top: -(@promo-offset-base + @chrome-add + @loggedin + @gold-add);
+			}
+			.loggedin.res.gold & {
+				top: -(@promo-offset-base + @chrome-add + @loggedin + @res-add + @gold-add);
 			}
 			
 			.contributor & {
-				top: -(@promo-offset-base + 139px);
+				top: -(@promo-offset-base + @chrome-add + @contributor);
 			}
-			
 			.contributor.res & {
-				top: -(@promo-offset-base + 159px);
+				top: -(@promo-offset-base + @chrome-add + @contributor + @res-add);
+			}
+			.contributor.gold & {
+				top: -(@promo-offset-base + @chrome-add + @contributor + @gold-add);
+			}
+			.contributor.res.gold & {
+				top: -(@promo-offset-base + @chrome-add + @contributor + @res-add + @gold-add);
 			}
 			
 			.moderator & {
-				top: -(@promo-offset-base + 170px);
+				top: -(@promo-offset-base + @chrome-add + @moderator) !important;
 			}
-			
 			.moderator.res & {
-				top: -(@promo-offset-base + 190px);
+				top: -(@promo-offset-base + @chrome-add + @moderator + @res-add) !important;
 			}
 		}
 	}
@@ -634,6 +660,9 @@
 
 // Bottom boxes
 .sidecontentbox {
+	display: flex;
+	flex-direction: column;
+	
 	margin: 10px;
 	padding: 5px;
 	
@@ -641,6 +670,8 @@
 	border: 1px solid @announce-border-color;
 	
 	.title {
+		order: 0;
+		
 		text-align: center;
 		
 		h1 {
@@ -654,17 +685,18 @@
 	}
 	
 	.content {
+		order: 2;
+		
 		border: none;
 	}
 	
 	// Large mod message button
 	a.helplink {
-		display: block;
-		width: @side-width - @content-padding-total - 15px;
-		position: absolute;
-		float: none;
+		order: 1;
 		
-		margin-top: 24px;
+		display: block;
+		
+		margin: 4px 2px;
 		padding: 6px 0;
 		
 		.side-fancy-button-bg();
@@ -674,10 +706,6 @@
 		
 		&:hover {
 			.side-fancy-button-hover-bg();
-		}
-		
-		& + .title + .content {
-			padding-top: 52px;
 		}
 	}
 }

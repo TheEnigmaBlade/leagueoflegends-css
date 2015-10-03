@@ -31,6 +31,11 @@ body > .content {
 			background-image: url(%%default-thumbnail%%);
 			background-position: center;
 		}
+		
+		&.nsfw {
+			background-image: url(%%spoiler-thumbnail%%);
+			background-position: center;
+		}
 	}
 	
 	.title {
@@ -60,6 +65,23 @@ body > .content {
 		color: @link-color;
 	}
 	
+	// Convert NSFW into SPOILER
+	.nsfw-stamp {
+		vertical-align: middle;
+		
+		acronym {
+			float: right;
+			font-size: 0;
+			
+			&::before {
+				content: "SPOILER";
+				float: left;
+				font-size: 10px;
+			}
+		}
+	}
+	
+	// Self posts
 	&.self {
 		.expando .md {
 			background-color: @content-text-bg;
@@ -68,6 +90,7 @@ body > .content {
 		}
 	}
 	
+	// Stickies
 	&.stickied {
 		.thumbnail {
 			background-image: url(%%sticky-thumbnail%%);
