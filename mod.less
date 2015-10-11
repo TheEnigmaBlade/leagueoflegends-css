@@ -1,13 +1,18 @@
 // Removed things
-.thing.spam {
+.thing.spam,
+div.thing.comment div.child .thing.comment.spam {
     padding: 8px 8px 8px 0 !important;
     
     background-color: @mod-remove-bg !important;
 }
 
+.comment.spam > .child {
+    // Fixes ugly white coloring with nested removed comments
+    background-color: transparent;
+}
+
 // Mod buttons
 .entry .buttons {
-	
 	.remove-button a {
 		color: @mod-remove-color !important;
 		

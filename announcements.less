@@ -1,85 +1,33 @@
 @import (reference) "style";
 
-.side .md > h1 {
-	display: none;
-	
-	@media all and (max-width: @announce-move-width) {
-		display: inherit;
-	}
-}
-
-.side .md > h1 + ol {
-	//width: 500px;
-	
-	position: absolute;
-	top: 18px;
-	left: 8px;
-	z-index: 9000;
-	
-	list-style-type: none;
-	background: none !important;
-	
-	// Newsies
-	li {
-		//display: block;
-		//height: 26px;
+.side .md
+{
+	& > p > strong {
+		position: absolute;
+	    top: -60px;
+	    right: 0px;
+	    z-index: 99999999;
+	    
+	    background-color: rgba(0, 0, 0, 0.8);
+	    border: 1px solid rgb(200, 0, 0);
+	    outline: 1px solid black;
 		
-		margin: 4px 0;
-		padding: 4px 0;
-		
-		// Normal
-		a {
-			padding: 4px 5px;
-			
-			background-color: @announce-bg;
-			border: 1px solid @announce-border;
-			
-			font-size: @announce-font-size;
-			color: @announce-color;
-			
-			transition: color @transition-time ease;
+		> a {
+		    display: block;
+		    width: 278px;
+		    max-width: 278px;
+		    
+		    padding: 10px;
+		    
+		    text-align: center;
+		    color: rgb(200, 0, 0);
+		    text-shadow: 1px 1px 1px black;
+		    
+		    transition: color 0.1s linear;
 			
 			&:hover {
-				color: @announce-hover-color;
+			    color: rgb(236, 236, 236);
 			}
-		}
-		
-		// Live event
-		em a {
-			background-color: @announce-live-bg;
-			border-color: @announce-live-border;
-			
-			font-size: @announce-live-font-size;
-			font-style: normal;
-			color: @announce-live-color;
-			
-			&:hover {
-				color: @announce-live-hover-color;
-			}
-		}
-		
-		// Big red warning
-		strong a {
-			font-weight: normal;
-		}
-	}
-	
-	// Move to sidebar after it doesn't fit in the header
-	@media all and (max-width: @announce-move-width) {
-		width: 284px;
-		
-		position: relative;
-		top: 0;
-		left: 8px;
-		
-		li {
-			padding: 0;
-		}
-		
-		li a {
-			display: inline-block;
-			width: 270px;
-			line-height: 16px;
 		}
 	}
 }
