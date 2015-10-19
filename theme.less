@@ -106,6 +106,24 @@ textarea {
 // Modes *
 //********
 
+// We don't like NP, so we'll complain about it to the user.
+html:lang(np) {
+	div.content::before {
+		content: @np-message;
+		display: block;
+		
+		margin-bottom: @content-padding;
+		padding: @content-padding;
+		
+		background-color: @np-bg;
+		border: 1px solid black;
+		outline: 1px solid @np-bg;
+		
+		color: @np-color;
+		font-size: @np-font-size;
+	}
+}
+
 /*html:lang(sf),
 html:lang(sd) {
 	.thing.link.over18 {
