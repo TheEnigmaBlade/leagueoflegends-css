@@ -145,6 +145,26 @@ html:lang(sd) {
 	}
 }*/
 
+html:lang(sf) {
+	.link.linkflair-spoiler {
+		.midcol,
+		.thumbnail,
+		.entry {
+			display: none;
+		}
+		
+		&::before {
+			content: @spoilers-message;
+			
+			margin-left: @content-padding;
+			
+			color: darken(red, 10%);
+			font-size: 14px;
+			font-style: italic;
+		}
+	}
+}
+
 //***********
 // Includes *
 //***********
