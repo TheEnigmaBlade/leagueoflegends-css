@@ -25,6 +25,7 @@
 
 // Heights
 @srbar-height: 18px;
+@userbar-height: 27px;
 @header-height: 150px;
 @tabs-height: 40px;
 
@@ -38,7 +39,8 @@
 ********/
 
 // Images
-@promo-img: "images/promo.jpg";
+@logo-img: "images/header-logo.png";
+@promo-img: "images/promo.png";
 @arrow-img: "images/arrows_top.png";
 
 // Fonts
@@ -59,9 +61,9 @@
 @color-red: rgb(240, 50, 50);
 
 // Background
-@bg-color: @color-dark-gray;
-@bg-pos: 0 @srbar-height;
-@bg-size: 100%;
+@bg-color: rgb(10, 9, 10);
+@bg-pos: 100% @srbar-height;
+@bg-size: calc(~"40% - -700px") auto;
 @bg-dynamic: false;
 
 // Subreddit bar
@@ -165,8 +167,8 @@
 * Text *
 *******/
 
-@side-user-text: "Challenger players";
-@side-online-text: "losing LP";
+@side-user-text: "new TSM fans";
+@side-online-text: "remaining CLG fans";
 
 @downvote-message: "off-topic or does not contribute to discussion";
 @no-results-message: "there don't seem to be any friends here";
