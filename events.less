@@ -1,5 +1,38 @@
 @import (reference) "style";
 
-.side .md {
+.side .md table {
+	width: @side-width  - @content-padding*2;
+	margin-left: @content-padding;
 	
+	background-color: @events-bg;
+	border: 1px solid @events-border-color;
+	
+	color: @events-color;
+	
+	thead {
+		display: none;
+	}
+	
+	tbody tr {
+		background-color: @events-bg;
+		
+		font-size: 11px;
+		
+		&:nth-child(2n+1) {
+			background-color: @events-bg-alt;
+		}
+		
+		&:hover {
+			background-color: @events-bg-hover;
+			transition: background-color @transition-time ease;
+		}
+		
+		a {
+			margin-left: 4px;
+		}
+		
+		td {
+			border: none;
+		}
+	}
 }
