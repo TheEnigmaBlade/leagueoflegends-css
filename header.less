@@ -139,11 +139,11 @@
 #header .pagename {
 	@logo-width: image-width(@logo-img);
 	@logo-height: image-height(@logo-img);
-	@logo-offset-x: @logo-width/2;
+	@logo-offset-x: @side-width + @content-padding;
 	
 	position: absolute;
 	top: (@header-height - @logo-height)/2 + @srbar-height;
-	left: calc(~'42% - @{logo-offset-x}');
+	left: calc(~'50% - @{logo-offset-x}');
 	
 	font-size: 0;
 	
