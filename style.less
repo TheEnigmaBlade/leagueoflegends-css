@@ -88,7 +88,8 @@
 
 @report-color: rgb(240, 100, 100);
 
-@moderator-color: rgb(34, 136, 34);
+//@moderator-color: rgb(34, 136, 34);
+@moderator-color: rgb(0, 128, 57);
 @submitter-color: rgb(0, 85, 223);
 @admin-color: red;
 
@@ -99,9 +100,10 @@
 @link-hover-color: lighten(@link-color, 10%);
 @link-visited-color: darken(@color-light-gray, 10%);
 
-@sticky-color: @color-dark-gray;
+@sticky-color: @moderator-color;
 @sticky-hover-color: lighten(@sticky-color, 10%);
 @sticky-visited-color: @sticky-color;
+@sticky-bg: fade(@moderator-color, 10%);
 
 // Comments
 @comment-lvl1-bg: @content-text-bg;

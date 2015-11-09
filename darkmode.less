@@ -66,12 +66,6 @@
 	.thing.link {
 		border-color: darken(@dark-content-bg, 20%);
 		
-		/*.thumbnail {
-			&.nsfw {
-				background-image: url(%%spoiler-thumbnail-dark%%);
-			}
-		}*/
-		
 		&.self {
 			.expando .md {
 				background-color: @dark-content-text-bg;
@@ -80,6 +74,9 @@
 		}
 		
 		&.stickied {
+			background: radial-gradient(ellipse farthest-corner at bottom, @dark-sticky-bg 0, @color-black 100%);
+			border: 1px solid @dark-sticky-bg;
+			
 			.title {
 				a.title {
 					color: @dark-sticky-color  !important;
@@ -88,7 +85,7 @@
 		}
 		
 		.stickied-tagline {
-			color: @dark-sticky-color;
+			color: @dark-tagline-color;
 		}
 		
 		.domain a:extend(.dark-tagline) {}
@@ -173,6 +170,11 @@
 			.side-dark-textfield();
 		}
 	}
+	
+	// RES stuff
+	.NERPageMarker {
+		border-color: @dark-content-bg;
+	}
 }
 
 .dark-comment {
@@ -204,7 +206,9 @@
 	.sidecontentbox .content,
 	.titlebox,
 	.titlebox form.flairtoggle,
-	#newlink {
+	#newlink,
+	.linkflairlabel,
+	.listing-page .sitetable > div:nth-of-type(4n+1) {
 		.nightmode-bg-fix();
 	}
 	

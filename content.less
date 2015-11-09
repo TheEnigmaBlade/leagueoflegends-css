@@ -59,22 +59,6 @@ body > .content {
 		color: @link-color;
 	}
 	
-	// Convert NSFW into SPOILER
-	/*.nsfw-stamp {
-		vertical-align: middle;
-		
-		acronym {
-			float: right;
-			font-size: 0;
-			
-			&::before {
-				content: "SPOILER";
-				float: left;
-				font-size: 10px;
-			}
-		}
-	}*/
-	
 	// Self posts
 	&.self {
 		.expando .md {
@@ -86,19 +70,37 @@ body > .content {
 	
 	// Stickies
 	&.stickied {
+		padding-top: @content-padding !important;
+		
+		background: radial-gradient(ellipse farthest-corner at bottom, @sticky-bg 0, @color-white 100%);
+		border: 1px solid fade(@sticky-color, 20%);
+		
+		.midcol,
+		.domain {
+			display: none;
+		}
+		
 		.thumbnail {
 			background-image: url(%%sticky-thumbnail%%);
 		}
 		
-		.title {
+		p.title {
+			margin-bottom: 5px;
+			
 			a.title {
-				color: @sticky-color  !important;
+				color: @sticky-color !important;
+				font-size: 18px;
+				font-weight: normal;
+				
+				&:hover {
+					color: @sticky-hover-color !important;
+				}
 			}
 		}
 	}
 	
 	.stickied-tagline {
-		color: @sticky-color;
+		color: @color-light-gray;
 	}
 }
 
@@ -178,17 +180,20 @@ body > .content {
 		}
 	}
 	
-	.tagline {
-		.submitter {
-			color: @submitter-color;
+	.tagline a.author {
+		&.submitter {
+			background-color: @submitter-color !important;
+			color: @color-white !important;
 		}
 		
-		.moderator {
-			color: @moderator-color;
+		&.moderator {
+			background-color: @moderator-color !important;
+			color: @color-white !important;
 		}
 		
-		.admin {
-			color: @admin-color;
+		&.admin {
+			background-color: @admin-color !important;
+			color: @color-white !important;
 		}
 	}
 }
