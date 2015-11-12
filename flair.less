@@ -4,13 +4,28 @@
 // Link flair *
 //*************
 
-.thing.link {
+.thing,
+.flairselector {
+	.linkflairlabel {
+		vertical-align: sub;
+		margin-bottom: 1px;
+		
+		background: none;
+		border: none;
+		
+		font-size: 14px;
+		text-transform: uppercase;
+	}
+	
+	// Specific types
+	
 	&.linkflair-spoiler {
 		.thumbnail {
-			height: 50px;
+			height: 52px;
 			
 			background-image: url(%%spoiler-thumbnail%%);
 			background-position: center;
+			background-repeat: no-repeat;
 			
 			img {
 				display: none;
@@ -18,14 +33,13 @@
 		}
 		
 		.linkflairlabel {
-			vertical-align: sub;
-			margin-bottom: 1px;
-			
-			border: none;
-			
-			font-size: 14px;
 			color: @color-red;
-			text-transform: uppercase;
+		}
+	}
+	
+	&.linkflair-other {
+		.linkflairlabel {
+			color: @color-orange;
 		}
 	}
 }

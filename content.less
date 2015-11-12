@@ -15,6 +15,10 @@ body > .content {
 
 // Links
 
+.link.last-clicked {
+	border: none;
+}
+
 .thing.link {
 	margin-bottom: @content-padding !important;
 	padding: 0 0 @content-padding 0 !important;
@@ -81,7 +85,13 @@ body > .content {
 		}
 		
 		.thumbnail {
+			height: 50px;
+			
 			background-image: url(%%sticky-thumbnail%%);
+			
+			img {
+				display: none;
+			}
 		}
 		
 		p.title {

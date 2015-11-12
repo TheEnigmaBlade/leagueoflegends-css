@@ -26,7 +26,7 @@
 // Heights
 @srbar-height: 18px;
 @userbar-height: 27px;
-@header-height: 150px;
+@header-height: 180px;
 @tabs-height: 40px;
 
 @search-height: @tabs-height - @search-padding * 2;
@@ -59,9 +59,10 @@
 @color-superwhite: rgb(252, 252, 252);
 @color-black: rgb(5, 5, 5);
 @color-red: rgb(240, 50, 50);
+@color-orange: rgb(240, 113, 50);
 
 // Background
-@bg-color: rgb(10, 9, 10);
+@bg-color: rgb(13, 12, 8);
 @bg-pos: 100% @srbar-height;
 @bg-size: calc(~"40% - -700px") auto;
 @bg-dynamic: false;
@@ -78,7 +79,7 @@
 @tabs-selected-color: @color-white;
 
 // Content
-@content-bg: @color-white;
+@content-bg: fade(@color-white, 95%);
 @content-border-color: @color-gray;
 
 @content-shadow-color: fade(black, 40%);
@@ -170,8 +171,8 @@
 * Text *
 *******/
 
-@side-user-text: "premades in queue";
-@side-online-text: "solo queue players";
+@side-user-text: "off-season free agents";
+@side-online-text: "eating popcorn";
 
 @downvote-message: "off-topic or does not contribute to discussion";
 @no-results-message: "there don't seem to be any friends here";
