@@ -561,7 +561,7 @@
 		@top: 73px;
 		@loggedin: 108px;
 		@contributor: 142px;
-		@moderator: 170px;
+		@moderator: 142px;
 		
 		top: -(@promo-offset-base + @top);
 		
@@ -600,6 +600,12 @@
 		}
 		.moderator.res & {
 			top: -(@promo-offset-base + @moderator + @res-add) !important;
+		}
+		.moderator.gold & {
+			top: -(@promo-offset-base + @moderator + @gold-add) !important;
+		}
+		.moderator.res.gold & {
+			top: -(@promo-offset-base + @moderator + @res-add + @gold-add) !important;
 		}
 		
 		// Dammit, Chrome. Why is your text rendering so bad?
@@ -641,6 +647,12 @@
 			}
 			.moderator.res & {
 				top: -(@promo-offset-base + @chrome-add + @moderator + @res-add) !important;
+			}
+			.moderator.gold & {
+				top: -(@promo-offset-base + @chrome-add + @moderator + @gold-add) !important;
+			}
+			.moderator.res.gold & {
+				top: -(@promo-offset-base + @chrome-add + @moderator + @res-add + @gold-add) !important;
 			}
 		}
 	}
