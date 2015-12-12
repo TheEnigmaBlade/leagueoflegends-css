@@ -62,9 +62,13 @@
 @color-orange: rgb(240, 113, 50);
 
 // Background
-@bg-color: rgb(13, 12, 8);
-@bg-pos: 100% (@srbar-height - 6px);
-@bg-size: calc(~"40% - -700px") auto;
+@bg-color: rgb(204, 227, 243);
+//@bg-pos: 100% (@srbar-height - 6px);
+//@bg-size: calc(~"40% - -700px") auto;
+@bg-pos: 100% calc(~"30% - 140px");
+@bg-size: calc(~"90% - -192px") auto;
+@bg-pos-ls: 100% calc(~"-20% - -70px");
+@bg-size-ls: calc(~"90% - -192px") auto;
 @bg-dynamic: false;
 
 // Subreddit bar
@@ -79,7 +83,7 @@
 @tabs-selected-color: @color-white;
 
 // Content
-@content-bg: fade(@color-white, 95%);
+@content-bg: fade(@color-white, 96%);
 @content-border-color: @color-gray;
 
 @content-shadow-color: fade(black, 40%);
@@ -171,8 +175,8 @@
 * Text *
 *******/
 
-@side-user-text: "playing Graves";
-@side-online-text: "losing with Graves";
+@side-user-text: "snowballs thrown";
+@side-online-text: "snowballs hit";
 
 @downvote-message: "off-topic or does not contribute to discussion";
 @no-results-message: "there don't seem to be any friends here";

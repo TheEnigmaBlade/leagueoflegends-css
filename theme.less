@@ -25,6 +25,11 @@ body {
 	& when (@bg-dynamic = true) {
 		background-attachment: fixed;
 	}
+	
+	@media (orientation:portrait) {
+		background-position: @bg-pos-ls;
+		background-size: @bg-size-ls;
+	}
 }
 
 a,
