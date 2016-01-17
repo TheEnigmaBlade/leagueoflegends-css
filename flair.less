@@ -23,7 +23,7 @@
 		.thumbnail {
 			height: 52px;
 			
-			background-image: url(%%spoiler-thumbnail%%);
+			background-image: url(%%spoiler-thumbnail%%) !important;
 			background-position: center;
 			background-repeat: no-repeat;
 			
@@ -180,6 +180,8 @@
 	}
 }
 
+// Best-of awards
+
 .flair-best-of {
 	min-width: @best-of-flair-width;
 	height: @best-of-flair-height;
@@ -196,6 +198,12 @@
 .flair-best-of-2014 {
 	&::before {
 		background-position: 0 0;
+	}
+}
+
+.flair-best-of-2015 {
+	&::before {
+		background-position: 0 -14px;
 	}
 }
 
