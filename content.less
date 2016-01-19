@@ -112,6 +112,17 @@ body > .content {
 	.stickied-tagline {
 		color: @color-light-gray;
 	}
+	
+	// Edit warning
+	.post-submitter & .usertext-edit .md::before {
+		content: @edit-text-message;
+		display: block;
+		margin-bottom: 4px;
+		
+		color: @color-red;
+		font-size: 14px;
+		font-weight: bold;
+	}
 }
 
 // Comments
