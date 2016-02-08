@@ -488,40 +488,18 @@
 		
 		// Events
 		h4 + table {
-			width: @side-width;
-			
-			background-color: @events-bg;
-			.side-sandwich-border();
-			
-			color: @events-color;
-			
-			thead {
-				display: none;
+			tr:nth-child(n+1) td:nth-child(2) strong {
+				animation: live-glow 2.0s infinite alternate linear;
+				transform: translateZ(0);
 			}
 			
-			tbody tr {
-				background-color: @events-bg;
-				
-				font-size: 11px;
-				
-				transition: background-color @transition-time linear;
-				
-				&:nth-child(2n+1) {
-					background-color: @events-bg-alt;
-				}
-				
-				&:hover {
-					background-color: @events-bg-hover;
-				}
-				
-				a {
-					margin-left: 4px;
-					color: @events-link-color;
-				}
-			}
-			
-			td {
-				border: none;
+			@keyframes live-glow {
+				from {
+			        text-shadow: 0 0 4px fadeout(@color-blue, 75%);
+			    }
+				to {
+			        text-shadow: 0 0 4px fadeout(@color-blue, 10%);
+			    }
 			}
 		}
 		

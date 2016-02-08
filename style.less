@@ -62,13 +62,15 @@
 @color-orange: rgb(240, 113, 50);
 
 // Background
-@bg-color: rgb(204, 227, 243);
+@bg-color: rgb(23, 26, 41);
 //@bg-pos: 100% (@srbar-height - 6px);
 //@bg-size: calc(~"40% - -700px") auto;
-@bg-pos: 100% calc(~"30% - 140px");
-@bg-size: calc(~"90% - -192px") auto;
-@bg-pos-ls: 100% calc(~"-20% - -70px");
-@bg-size-ls: calc(~"90% - -192px") auto;
+@bg-pos: 100% calc(~"30% - 170px");
+@bg-size: calc(~"75% - -200px") auto;
+//@bg-pos-ls: 100% calc(~"-20% - -70px");
+//@bg-size-ls: calc(~"90% - -192px") auto;
+@bg-pos-ls: @bg-pos;
+@bg-size-ls: @bg-size;
 @bg-dynamic: false;
 
 // Subreddit bar
@@ -109,6 +111,8 @@
 @sticky-hover-color: lighten(@sticky-color, 10%);
 @sticky-visited-color: @sticky-color;
 @sticky-bg: fade(@moderator-color, 10%);
+
+@thumbnail-spoiler-blur: 4px;
 
 // Comments
 @comment-lvl1-bg: @content-text-bg;
@@ -175,8 +179,8 @@
 * Text *
 *******/
 
-@side-user-text: "snowballs thrown";
-@side-online-text: "snowballs hit";
+@side-user-text: "placed in bronze";
+@side-online-text: "invalid visas";
 
 @downvote-message: "off-topic or does not contribute to discussion";
 @no-results-message: "there don't seem to be any friends here";

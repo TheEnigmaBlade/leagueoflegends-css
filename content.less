@@ -1,6 +1,7 @@
 @import (reference) "style";
 
-body > .content {
+body > .content,
+.modtools-page > div.content {
 	width: @content-width;
 	
 	margin: (@tabs-height - 1px) 0 0 @content-padding;
@@ -56,6 +57,10 @@ body > .content {
 		
 		a {
 			visibility: visible;
+			padding: 0px 2px;
+			
+			background-color: inherit;
+			border-radius: 2px;
 		}
 	}
 	
