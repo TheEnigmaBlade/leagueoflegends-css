@@ -489,18 +489,19 @@
 		// Events
 		h4 + table {
 			tr:nth-child(n+1) td:nth-child(2) strong {
-				animation: live-glow 2.0s infinite alternate linear;
-				transform: translateZ(0);
+				//animation: live-glow 2.0s infinite alternate ease-in-out;
+				//transform: translateZ(0);
+				text-shadow: 0 0 4px @color-blue;
 			}
 			
-			@keyframes live-glow {
-				from {
-			        text-shadow: 0 0 4px fadeout(@color-blue, 75%);
-			    }
-				to {
-			        text-shadow: 0 0 4px fadeout(@color-blue, 10%);
-			    }
-			}
+			//@keyframes live-glow {
+			//	from {
+			//        text-shadow: 0 0 4px darken(@color-blue, 50%);
+			//    }
+			//	to {
+			//        text-shadow: 0 0 4px @color-blue;
+			//    }
+			//}
 		}
 		
 		// Main menu

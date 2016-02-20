@@ -25,7 +25,10 @@
 		.thumbnail {
 			height: 52px;
 			
-			background-image: url(%%spoiler-thumbnail%%) !important;
+			background-image: url(%%spoiler-thumbnail-link%%) !important;
+			&.self {
+				background-image: url(%%spoiler-thumbnail%%) !important;
+			}
 			background-position: center;
 			background-repeat: no-repeat;
 			
