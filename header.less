@@ -183,10 +183,10 @@
     
     // Special case for submit page: contained within form#newlink
     form &.formtab {
-        @w: @side-width - @content-padding;
+        @w: 2*@content-padding + 10px;
         width: calc(~'100% - -@{w}');
-        top: -39px;
-        left: -@content-padding;
+        top: @srbar-height + @header-height;
+        //left: -@content-padding;
         
         li:extend(.tabmenu li all) {
             a {
