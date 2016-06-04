@@ -534,7 +534,7 @@
 		// Position adjustments based on login and RES states
 		// This should *really* be done a different way.
 		@res-add: 20px;
-		@gold-add: 28px;
+		@gold-add: 18px;
 		@chrome-add: -3px;
 		
 		@top: 73px;
@@ -695,6 +695,13 @@
 		
 		&:hover {
 			.side-fancy-button-hover-bg();
+		}
+		
+		&::after {
+		    content: "(this is a button)";
+		    display: block;
+		    font-size: 10px;
+		    height: 11px;
 		}
 	}
 }

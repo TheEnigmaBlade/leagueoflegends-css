@@ -20,6 +20,7 @@
 @consumed-content-width: @side-width + @side-border-space + @content-padding-total * 2;
 @content-width: calc(~"100% - @{consumed-content-width}");
 @tabs-width: calc(~"100% - @{content-padding-total}");
+@tabs-form-width: calc(~"100% - @{content-padding-total} - @{content-padding}");
 
 @search-width: @side-width - @search-padding * 2;
 
@@ -179,8 +180,8 @@
 * Text *
 *******/
 
-@side-user-text: "placed in bronze";
-@side-online-text: "invalid visas";
+@side-user-text: "want to play URF";
+@side-online-text: "want to play Urf";
 
 @downvote-message: "off-topic or does not contribute to discussion";
 @no-results-message: "there don't seem to be any friends here";

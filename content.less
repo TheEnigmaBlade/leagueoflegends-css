@@ -422,13 +422,21 @@ body > .content,
 		
 		border-top: 2px solid @color-gray !important;
 		
-		:nth-child(6) {
+		:not(.res) :nth-child(6),
+		.res & :nth-child(7) {
 			order: -1;
-			margin-top: 0;
 		}
 	}
 	
-	.submit_text h1 {
-		display: none;
+	.submit_text {
+		max-height: 380px;
+		
+		ol, ul {
+			margin-left: 0;
+		}
+		
+		h1 {
+			display: none;
+		}
 	}
 }
