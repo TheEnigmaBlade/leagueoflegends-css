@@ -78,12 +78,21 @@
 		
 		&.stickied {
 			background: radial-gradient(ellipse farthest-corner at bottom, @dark-sticky-bg 0, @color-black 100%);
-			border: 1px solid @dark-sticky-bg;
+			border-color: fade(@sticky-color, 20%);
+			
+			+ .clearleft + .stickied {
+				background: radial-gradient(ellipse farthest-corner at top, @dark-sticky-bg 0, @color-black 100%);
+			}
 			
 			.title {
 				a.title {
 					color: @dark-sticky-color  !important;
 				}
+			}
+			
+			+ .clearleft {
+				border-top-color: @dark-sticky-separator-top;
+				border-bottom-color: @dark-sticky-separator-bot;
 			}
 		}
 		

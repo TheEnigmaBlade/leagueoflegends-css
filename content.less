@@ -14,7 +14,13 @@ body > .content,
 	}
 }
 
+#siteTable {
+	position: relative;
+}
+
 // Links
+
+@sticky-gap: 14px + @content-padding;
 
 .link.last-clicked {
 	border: none;
@@ -33,6 +39,10 @@ body > .content,
 	.thumbnail {
 		&.self {
 			background-image: url(%%default-thumbnail%%);
+			background-position: center;
+		}
+		&.spoiler {
+			background-image: url(%%spoiler-thumbnail%%);
 			background-position: center;
 		}
 	}
@@ -79,10 +89,22 @@ body > .content,
 	
 	// Stickies
 	&.stickied {
+		position: relative;
+		
+		margin-bottom: @sticky-gap !important;
 		padding-top: @content-padding !important;
 		
 		background: radial-gradient(ellipse farthest-corner at bottom, @sticky-bg 0, @color-white 100%);
 		border: 1px solid fade(@sticky-color, 20%);
+		
+		+ .clearleft + .stickied {
+			margin-top: -@sticky-gap;
+			
+			background: radial-gradient(ellipse farthest-corner at top, @sticky-bg 0, @color-white 100%);
+			border-top: none;
+		}
+		
+		// Internals
 		
 		.midcol,
 		.domain {
@@ -111,6 +133,19 @@ body > .content,
 					color: @sticky-hover-color !important;
 				}
 			}
+		}
+		
+		// Bottom separator
+		
+		+ .clearleft {
+			position: absolute;
+			left: 0;
+			right: 0;
+			
+			margin-top: -@sticky-gap / 2;
+			
+			border-top: 1px solid @sticky-separator-top;
+			border-bottom: 1px solid @sticky-separator-bot;
 		}
 	}
 	
@@ -179,10 +214,6 @@ body > .content,
 		margin: 2px @content-padding;
 	}
 	
-	.infobar {
-		margin-right: 0;
-	}
-	
 	.usertext-edit {
 		textarea {
 			background-image: url(%%comment-msg%%);
@@ -195,6 +226,10 @@ body > .content,
 }
 
 // General
+
+.infobar {
+	margin-right: 0;
+}
 
 .thing {
 	.buttons {
@@ -210,16 +245,19 @@ body > .content,
 		&.submitter {
 			background-color: @submitter-color !important;
 			color: @color-white !important;
+			padding: 0 2px;
 		}
 		
 		&.moderator {
 			background-color: @moderator-color !important;
 			color: @color-white !important;
+			padding: 0 2px;
 		}
 		
 		&.admin {
 			background-color: @admin-color !important;
 			color: @color-white !important;
+			padding: 0 2px;
 		}
 	}
 }
@@ -438,5 +476,9 @@ body > .content,
 		h1 {
 			display: none;
 		}
+	}
+	
+	#image-field {
+		display: none;
 	}
 }

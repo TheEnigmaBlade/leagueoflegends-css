@@ -14,6 +14,37 @@
 		height: @c-h;
 		
 		background-image: url(%%champion-flair%%);
+        border-radius: 2px;
+        
+        font-size: 0;
+	}
+    
+    // Summoner spells
+    @ss-w: 24px;
+    @ss-h: 24px;
+    
+    &[href^="#ss-"] {
+		display: inline-block;
+		width: @ss-w;
+		height: @ss-h;
+		
+		background-image: url(%%summoner-flair%%);
+        border-radius: 2px;
+        
+        font-size: 0;
+	}
+    
+    // Items
+    @i-w: 24px;
+    @i-h: 24px;
+    
+    &[href^="#i-"] {
+		display: inline-block;
+		width: @i-w;
+		height: @i-h;
+		
+		background-image: url(%%item-flair%%);
+        border-radius: 2px;
         
         font-size: 0;
 	}

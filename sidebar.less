@@ -39,16 +39,16 @@
 }
 
 .side-fancy-link() {
-	background-color: @announce-bg;
-	border: 1px solid @announce-border-color;
+	background-color: @side-button-bg;
+	border: 1px solid @side-button-border-color;
 	
 	&:hover {
-		background-color: @announce-bg-hover;
+		background-color: @side-button-bg-hover;
 	}
 }
 
 .side-fancy-link-hover-text() {
-	color: @announce-color-hover;
+	color: @side-button-color-hover;
 }
 
 .side-dark-textfield() {
@@ -123,24 +123,37 @@
 }
 
 .titlebox {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	
 	margin-top: 190px;
 	padding: 0 @side-padding @side-padding;
 	
 	color: @side-highlight-color;
 	
-	// Hide subreddit name
-	.redditname {
+	// Hide some elements
+	.redditname,
+	.leavemoderator {
 		display: none;
 	}
 	
-	// Subscriber and current users
-	.subscribers {
-		display: inline-block;
+	// Fit elements to the width of the title box so they can be slid up and down
+	> * {
 		width: 100%;
+	}
+	
+	// Subscriber and current users
+	.subscribers,
+	.users-online {
+		order: 0;
 		height: 22px;
 		
-		font-size: 14px;
 		text-align: center;
+	}
+	
+	.subscribers {
+		font-size: 16px;
 		
 		&:after {
 			content: @side-user-text;
@@ -152,7 +165,7 @@
 	}
 
 	.users-online {
-		text-align: center;
+		font-size: 14px;
 		
 		&:before {
 			display: none;
@@ -169,26 +182,27 @@
 	
 	// Subscribe buttons (RES wraps in .subButtons)
 	.subscribe-button {
-		display: block;
+		order: 1;
+		
 		text-align: center;
-	}
-	
-	.subscribe-button a {
-		width: 130px;
+		
+		a {
+			width: 130px;
+		}
 	}
 	
 	.subscribe-button a.active,					// Normal subscribe button
 	.subButtons span:not(.subscribe-button) {	// RES subscribe buttons (+shortcut, +dashboard)
 		display: inline-block;
-		width: auto;
-		line-height: 16px;
+		width: 90px;
+		line-height: 22px;
 		
 		.side-fancy-button-bg();
-		.side-fancy-button-text();
+		.side-fancy-button-text(14px);
 		
 		padding: 0 3px;
 		
-		font-size: 12px;
+		text-transform: capitalize;
 		
 		&:hover {
 			.side-fancy-button-hover-bg();
@@ -196,26 +210,26 @@
 	}
 	
 	> .subscribe-button a.active {
-		width: 130px;
+		width: 160px;
 	}
 	
 	// Configure RES's wrapper around sub buttons
 	.subButtons {
-		display: table;
-		width: 100%;
+		order: 1;
 		height: 24px;
 		
-		text-align: center;
+		margin-bottom: 5px;
 		
-		.subscribe-button {
-			display: inline-block;
-		}
+		text-align: center;
 	}
 	
 	// Button options
 	form.toggle {
+		order: 2;
 		height: 18px;
 		vertical-align: middle;
+		
+		padding: 2px 0 2px 0;
 		
 		background: none;
 		
@@ -229,12 +243,13 @@
 		}
 	}
 	
-	.leavemoderator:extend(.titlebox form.toggle),
 	form.leavecontributor-button {
+		order: 2;
 		height: 24px;
 	}
 	
 	.tagline {
+		order: 2;
 		height: 12px;
 		margin: 2px 0 0 20px;
 		
@@ -250,6 +265,11 @@
 	.flairselectbtn:after {
 		content: "flair";
 		margin-left: 3px;
+	}
+	
+	// Move main content to bottom
+	.usertext {
+		order: 3;
 	}
 }
 
@@ -280,8 +300,6 @@
 		margin: -@spacer-margin-top @search-padding 0 0;
 		
 		input[type="submit"] {
-			z-index: 3;
-			
 			margin-left: -28px;
 			
 			background-image: url(%%sprite-reddit%%) !important;
@@ -295,13 +313,10 @@
 			width: @search-width;
 			height: @search-height;
 			
-			position: relative;
-			z-index: 2;
-			
 			margin: @search-padding;
 			padding: 3px 0px;
 			
-			font-size: 16px;
+			font-size: 14px;
 			text-indent: 6px;
 			
 			&:focus {
@@ -319,6 +334,7 @@
 		z-index: 1;
 		
 		background-color: @side-field-bg;
+		border-top: none;
 		border-color: @side-field-border !important;
 		border-radius: 0;
 		
@@ -533,14 +549,13 @@
 		
 		// Position adjustments based on login and RES states
 		// This should *really* be done a different way.
-		@res-add: 20px;
-		@gold-add: 18px;
-		@chrome-add: -3px;
+		@res-add: 22px;
+		@gold-add: 22px;
+		@chrome-add: -5px;
 		
-		@top: 73px;
-		@loggedin: 108px;
+		@top: 87px;
+		@loggedin: 123px;
 		@contributor: 142px;
-		@moderator: 142px;
 		
 		top: -(@promo-offset-base + @top);
 		
@@ -572,19 +587,6 @@
 		}
 		.contributor.res.gold & {
 			top: -(@promo-offset-base + @contributor + @res-add + @gold-add);
-		}
-		
-		.moderator & {
-			top: -(@promo-offset-base + @moderator) !important;
-		}
-		.moderator.res & {
-			top: -(@promo-offset-base + @moderator + @res-add) !important;
-		}
-		.moderator.gold & {
-			top: -(@promo-offset-base + @moderator + @gold-add) !important;
-		}
-		.moderator.res.gold & {
-			top: -(@promo-offset-base + @moderator + @res-add + @gold-add) !important;
 		}
 		
 		// Dammit, Chrome. Why is your text rendering so bad?
@@ -620,19 +622,6 @@
 			.contributor.res.gold & {
 				top: -(@promo-offset-base + @chrome-add + @contributor + @res-add + @gold-add);
 			}
-			
-			.moderator & {
-				top: -(@promo-offset-base + @chrome-add + @moderator) !important;
-			}
-			.moderator.res & {
-				top: -(@promo-offset-base + @chrome-add + @moderator + @res-add) !important;
-			}
-			.moderator.gold & {
-				top: -(@promo-offset-base + @chrome-add + @moderator + @gold-add) !important;
-			}
-			.moderator.res.gold & {
-				top: -(@promo-offset-base + @chrome-add + @moderator + @res-add + @gold-add) !important;
-			}
 		}
 	}
 	
@@ -655,8 +644,8 @@
 	margin: 10px;
 	padding: 5px;
 	
-	background-color: @announce-bg;
-	border: 1px solid @announce-border-color;
+	background-color: @side-button-bg;
+	border: 1px solid @side-button-border-color;
 	
 	.title {
 		order: 0;
@@ -720,16 +709,46 @@
 	
 	input {
 		.side-dark-textfield();
+		
+		&[type="text"] {
+			margin-left: 6px;
+		}
+		
+		&[type="password"] {
+			margin-left: 4px;
+		}
 	}
 	
 	button {
-		padding: 0 6px;
+		.side-fancy-button-bg();
+		.side-fancy-button-text(14px);
+		
+		&:hover {
+			.side-fancy-button-hover-bg();
+		}
+		
+		margin: 0 4px 4px 0;
+		padding: 2px 10px;
+	}
+	
+	#remember-me {
+		margin-left: 7px;
+	}
+	
+	.g-recaptcha {
+		margin-top: 6px;
 	}
 }
 
 // Submit buttons
 .submit {
 	&.sidebox {
+		// Only show for logged-in users
+		display: none;
+		.loggedin & {
+			display: inherit;
+		}
+		
 		margin-top: -@spacer-margin-top - 6px;
 	}
 	

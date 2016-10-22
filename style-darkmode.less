@@ -12,7 +12,10 @@
 @dark-tagline-color: lighten(@color-gray, 10%);
 
 @dark-sticky-color: @sticky-color;
-@dark-sticky-bg: fade(@sticky-color, 10%);
+@dark-sticky-bg: shade(@dark-sticky-color, 88%);
+
+@dark-sticky-separator-top: fade(darken(@dark-content-bg, 10%), 50%);
+@dark-sticky-separator-bot: fade(lighten(@dark-content-bg, 10%), 50%);
 
 @dark-comment-input-color: @color-white;
 @dark-comment-lvl1-bg: @dark-content-text-bg;

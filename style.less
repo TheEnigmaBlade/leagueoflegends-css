@@ -40,7 +40,8 @@
 ********/
 
 // Images
-@logo-img: "images/header-logo.png";
+//@logo-img: "images/header-logo.png";
+@logo-img: "images/backgrounds/Worlds 2016/header-logo.png";
 @promo-img: "images/promo.png";
 @arrow-img: "images/arrows_top.png";
 
@@ -63,11 +64,13 @@
 @color-orange: rgb(240, 113, 50);
 
 // Background
-@bg-color: rgb(23, 26, 41);
+@bg-color: #090b18;
 //@bg-pos: 100% (@srbar-height - 6px);
 //@bg-size: calc(~"40% - -700px") auto;
-@bg-pos: 100% calc(~"30% - 170px");
-@bg-size: calc(~"75% - -200px") auto;
+//@bg-pos: 100% calc(~"30% - 170px");
+//@bg-size: calc(~"75% - -200px") auto;
+@bg-pos: 100% calc(~"10% - 220px");
+@bg-size: calc(~"40% - -350px") auto;
 //@bg-pos-ls: 100% calc(~"-20% - -70px");
 //@bg-size-ls: calc(~"90% - -192px") auto;
 @bg-pos-ls: @bg-pos;
@@ -111,7 +114,10 @@
 @sticky-color: @moderator-color;
 @sticky-hover-color: lighten(@sticky-color, 10%);
 @sticky-visited-color: @sticky-color;
-@sticky-bg: fade(@moderator-color, 10%);
+@sticky-bg: tint(@moderator-color, 94%);
+
+@sticky-separator-top: fade(darken(@content-bg, 15%), 50%);
+@sticky-separator-bot: fade(lighten(@content-bg, 15%), 50%);
 
 @thumbnail-spoiler-blur: 4px;
 
@@ -140,6 +146,12 @@
 @side-field-border: lighten(@side-field-bg, 10%);
 @side-field-color: @color-light-gray;
 
+@side-button-bg: lighten(@events-bg, 2%);
+@side-button-bg-hover: lighten(@events-bg, 8%);
+@side-button-border-color: @side-border-color;
+@side-button-color: @color-blue;
+@side-button-color-hover: lighten(@side-button-color, 15%);
+
 // Submit buttons
 //@submit-bg: rgb(85, 54, 33);
 //@submit-color: rgb(202, 181, 162);
@@ -150,20 +162,16 @@
 @submit-hover-color: @color-blue;
 
 // Announcments
-@announce-bg: @events-bg-alt;
-@announce-bg-hover: @events-bg-hover;
-@announce-color-hover: @color-white;
-
-@announce-border-color: @side-border-color;
+//TODO
 
 // Events
 @events-bg: @color-black;
-@events-bg-alt: lighten(@events-bg, 2%);
-@events-bg-hover: lighten(@events-bg, 8%);
+@events-bg-alt: @side-button-bg;
+@events-bg-hover: @side-button-bg-hover;
 @events-border-color: @side-border-color;
 
 @events-color: @color-light-gray;
-@events-link-color: @color-blue;
+@events-link-color: @side-button-color;
 
 // Mod stuff
 @mod-remove-bg: rgb(206, 238, 252);
@@ -180,8 +188,8 @@
 * Text *
 *******/
 
-@side-user-text: "want to play URF";
-@side-online-text: "want to play Urf";
+@side-user-text: "ADC S+ rankings";
+@side-online-text: "support S+ rankings";
 
 @downvote-message: "off-topic or does not contribute to discussion";
 @no-results-message: "there don't seem to be any friends here";
