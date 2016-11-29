@@ -183,7 +183,6 @@
 	// Subscribe buttons (RES wraps in .subButtons)
 	.subscribe-button {
 		order: 1;
-		margin-right: 0px;
 		text-align: center;
 		
 		a {
@@ -209,8 +208,8 @@
 		}
 	}
 	
-	.subButtons span:not(.subscribe-button) {	// RES subscribe buttons (+shortcut, +dashboard)
-		margin: 0 0 5px 5px;		
+	.subButtons :last-child {
+    		margin-right: 0;
 	}
 	
 	> .subscribe-button a.active {
