@@ -183,7 +183,6 @@
 	// Subscribe buttons (RES wraps in .subButtons)
 	.subscribe-button {
 		order: 1;
-		
 		text-align: center;
 		
 		a {
@@ -194,11 +193,11 @@
 	.subscribe-button a.active,					// Normal subscribe button
 	.subButtons span:not(.subscribe-button) {	// RES subscribe buttons (+shortcut, +dashboard)
 		display: inline-block;
-		width: 90px;
-		line-height: 22px;
+		width: 83px;
+		line-height: 21px;
 		
 		.side-fancy-button-bg();
-		.side-fancy-button-text(14px);
+		.side-fancy-button-text(13px);
 		
 		padding: 0 3px;
 		
@@ -207,6 +206,10 @@
 		&:hover {
 			.side-fancy-button-hover-bg();
 		}
+	}
+	
+	.subButtons :last-child {
+    		margin-right: 0;
 	}
 	
 	> .subscribe-button a.active {
