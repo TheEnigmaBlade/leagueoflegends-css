@@ -297,14 +297,16 @@ body > .content,
 // Arrows
 
 .link {
+	@midcol-w: 40px;
+	
 	.midcol {
-		width: 36px !important;
+		width: @midcol-w !important;
 		
 		margin-left: 0;
 	}
 	
 	.score {
-		width: 35px;
+		width: @midcol-w - 1px;
 		
 		color: @color-light-gray;
 	}
