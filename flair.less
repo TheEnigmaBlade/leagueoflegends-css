@@ -166,7 +166,6 @@
 	}
 }
 
-
 .flair-triggs {
 	min-width: @team-flair-width * 2;
 	
@@ -189,6 +188,21 @@
 		height: @h;
 		
 		background-image: url(%%team-soraka-flair%%);
+	}
+}
+
+.flair-verified {
+	@w: 16px;
+	@h: 16px;
+	min-width: @w;
+	height: @h;
+	line-height: @h - 1px;
+	
+	&::before {
+		width: @w;
+		height: @h;
+		
+		background-image: url(%%verified-flair%%);
 	}
 }
 
